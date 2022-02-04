@@ -12,6 +12,7 @@ public class Avatar : MonoBehaviour
     public bool jumped;
     public float fuel, maxFuel;
     public float jetpackAcceleration = 3f;
+    public float hoverSpeed = 0.1f;
 
     public float velX, velY, velZ, acc, jumpAcc;
     // Start is called before the first frame update
@@ -65,8 +66,14 @@ public class Avatar : MonoBehaviour
         {
             velX = velX * 2;
             velZ = velZ * 2;
-            velY = 0.1f;
-            fuel -= 0.1f;
+            velY = hoverSpeed;
+            fuel -= 0.5f;
+        }
+        
+        if (jumped && Input.GetKeyDown(KeyCode.Q) && fuel > 0 )
+        {
+            velY = jetpackAcceleration;
+            fuel -= 25f;
         }
 
         if (!jumped && Input.GetKeyDown(KeyCode.Space))

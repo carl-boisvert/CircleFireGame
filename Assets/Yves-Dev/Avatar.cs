@@ -4,37 +4,38 @@ using UnityEngine;
 
 public class Avatar : MonoBehaviour
 {
-    public CharacterController cc;
-    public Rigidbody rb;
+    CharacterController cc;
 
-    public float gravity = -2.5f;
-
-    public bool isJumping;
-    public float fuel, maxFuel;
-    public float jetpackAcceleration = 3f;
-    public float hoverSpeed = 0.1f;
-
-    public float velX, velY, velZ, acc;
+    float gravity = -2.5f;
     private float termVelY = -5;
-    public float jumpAcc, jumpCancelAcc;
 
-    private string jumpStateMachine = "none";
+    float fuel;
+    float maxFuel = 100, hoverCost = 10, airBoostCost = 35;
+
+    float airBoostSpeed;
+    float hoverAcceleration = 0.2f;
+
+    float velX, velY, velZ;
+    float moveSpeed = 1;
+    float airAcceleration = 0.5f;
+
+    private float jumpSpeed = 2.5f;
+    float jumpCancelSpeed;
+
+    string jumpStateMachine = "none";
 
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        rb = GetComponent<Rigidbody>();
 
         velX = 0;
         velY = 0;
         velZ = 0;
 
-        acc = 0.5f;
-        jumpAcc = 2;
-        jumpCancelAcc = 1;
+        jumpCancelSpeed = jumpSpeed / 2;
+        airBoostSpeed = jumpSpeed * 2;
 
-        maxFuel = 100f;
         fuel = maxFuel;
     }
 
@@ -51,27 +52,26 @@ public class Avatar : MonoBehaviour
         {
             fuel++;
         }
-        
-        if (!cc.isGrounded && Input.GetKey(KeyCode.LeftShift) && fuel > 0 )
+
+        if (!cc.isGrounded && Input.GetKey(KeyCode.LeftShift) && fuel > 0)
         {
-            velX = velX * 1.5f;
-            velZ = velZ * 1.5f;
-            velY = hoverSpeed;
-            fuel -= 0.5f;
-        }
-        
-        if (!cc.isGrounded && Input.GetKeyDown(KeyCode.Q) && fuel > 0 )
-        {
-            velY = jetpackAcceleration;
-            fuel -= 25f;
+            if (velY <= hoverAcceleration) velY += hoverAcceleration;
+            fuel -= hoverCost * Time.deltaTime;
         }
 
-        cc.Move(new Vector3(velX,velY,velZ));
+        if (!cc.isGrounded && Input.GetKeyDown(KeyCode.Q) && fuel > 0)
+        {
+            velY = airBoostSpeed;
+            fuel -= airBoostCost;
+            FuelStabilizer();
+        }
+
+        cc.Move(new Vector3(velX, velY, velZ));
     }
 
     private void LateUpdate()
     {
-        
+
     }
 
     private void Gravity()
@@ -83,21 +83,50 @@ public class Avatar : MonoBehaviour
         else velY = termVelY;
     }
 
-    //STATE MACHINES
+    public float GetVelocityY()
+    {
+        return velY;
+    }
 
+    public void SetVelocityY(float newVelY)
+    {
+        velY = newVelY;
+    }
+
+    public void SetMoveSpeed(float newSpeed)
+    {
+        moveSpeed = newSpeed;
+    }
+
+    public void SetGravity(float newGravity)
+    {
+        gravity = newGravity;
+    }
+
+    public void SetJumpSpeed(float newSpeed)
+    {
+        jumpSpeed = newSpeed;
+    }
+
+    private void FuelStabilizer()
+    {
+        if (fuel < 0) fuel = 0;
+    }
+
+    //STATE MACHINES
     private void RunState()
     {
 
         //New State
         if (Input.GetKeyDown(KeyCode.Space) && (jumpStateMachine == "Idle" || jumpStateMachine == "Walk")) StartJump();
         else if (jumpStateMachine == "Idle" && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) StartWalk();
-        else if(jumpStateMachine == "none") StartIdle();
+        else if (jumpStateMachine == "none") StartIdle();
 
-        
+
         //Ongoing States
-        if(jumpStateMachine == "Idle") Idle();
-        if(jumpStateMachine == "Walk") Walk();
-        if(jumpStateMachine == "Jump") Jump();
+        if (jumpStateMachine == "Idle") Idle();
+        if (jumpStateMachine == "Walk") Walk();
+        if (jumpStateMachine == "Jump") Jump();
     }
 
     private void StartIdle()
@@ -115,7 +144,7 @@ public class Avatar : MonoBehaviour
     {
         jumpStateMachine = "none";
     }
-    
+
     private void StartWalk()
     {
         jumpStateMachine = "Walk";
@@ -124,8 +153,8 @@ public class Avatar : MonoBehaviour
     private void Walk()
     {
         // Change the Velocities
-        velX = Input.GetAxis("Vertical") * acc;
-        velZ = Input.GetAxis("Horizontal") * -acc;
+        velX = Input.GetAxis("Vertical") * moveSpeed;
+        velZ = Input.GetAxis("Horizontal") * -moveSpeed;
 
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) StopWalk();
     }
@@ -134,16 +163,21 @@ public class Avatar : MonoBehaviour
     {
         jumpStateMachine = "none";
     }
-    
+
     private void StartJump()
     {
         jumpStateMachine = "Jump";
-        velY = jumpAcc;
+        velY = jumpSpeed;
     }
 
     private void Jump()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelAcc) velY = jumpCancelAcc;
+        velX += Input.GetAxis("Vertical") * airAcceleration;
+        velZ += Input.GetAxis("Horizontal") * -airAcceleration;
+
+        CapAirVelocities();
+
+        if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 
         if (velY < 0 && cc.isGrounded) StopJump();
     }
@@ -151,5 +185,14 @@ public class Avatar : MonoBehaviour
     private void StopJump()
     {
         jumpStateMachine = "none";
+    }
+
+    private void CapAirVelocities()
+    {
+        if (velX > moveSpeed) velX = moveSpeed;
+        else if (velX < -moveSpeed) velX = -moveSpeed;
+
+        if (velZ > moveSpeed) velZ = moveSpeed;
+        else if (velZ < -moveSpeed) velZ = -moveSpeed;
     }
 }

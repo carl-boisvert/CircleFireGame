@@ -9,7 +9,7 @@ public class PlatformBouncing : Platform
     protected override void OnPlayerLand(GameObject player)
     {
         if (player.TryGetComponent<Avatar>(out Avatar playerAvatar)){
-            playerAvatar.velY += force;
+            playerAvatar.SetVelocityY(playerAvatar.GetVelocityY() + force);
         }
     }
 }

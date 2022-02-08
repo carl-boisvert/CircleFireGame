@@ -26,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8944582150542138199}
-  m_LocalRotation: {x: 0.19801973, y: 0.6843618, z: -0.20161632, w: 0.6721518}
-  m_LocalPosition: {x: -8.940021, y: 4.894408, z: 0.2835437}
+  m_LocalRotation: {x: 0.21469386, y: 0.67912996, z: -0.21859132, w: 0.66701347}
+  m_LocalPosition: {x: -11.986607, y: 5.533055, z: -0.052038774}
   m_LocalScale: {x: 0.10627542, y: 0.10627542, z: 0.10627542}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -326,17 +326,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cc: {fileID: 0}
-  rb: {fileID: 0}
-  gravity: 2.5
-  isJumping: 0
-  hasJumped: 0
+  gravity: -2.5
+  termVelY: -5
   fuel: 0
-  maxFuel: 0
-  jetpackAcceleration: 2
-  hoverSpeed: 0.1
-  velX: 0
-  velY: 0
-  velZ: 0
-  termVelY: 5
-  acc: 0
-  jumpAcc: 0
+  maxFuel: 100
+  hoverCost: 10
+  airBoostCost: 35
+  jetpackSpeed: 3
+  hoverAcceleration: 0.2
+  moveSpeed: 1
+  airAcceleration: 0.5
+  jumpSpeed: 5

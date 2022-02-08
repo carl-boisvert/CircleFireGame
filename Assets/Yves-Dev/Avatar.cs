@@ -6,22 +6,31 @@ public class Avatar : MonoBehaviour
 {
     CharacterController cc;
 
-    float gravity = -2.5f;
-    private float termVelY = -5;
+    [Header("Gravity")]
+    [SerializeField] float gravity = -2.5f;
+    [SerializeField] private float termVelY = -5;
 
+    [Header("Fuel")]
+    [SerializeField] float maxFuel = 100;
+    [SerializeField] float fuelRecovery = 1;
+    [SerializeField] float hoverCost = 10;
+    [SerializeField] float airBoostCost = 35;
     float fuel;
-    float maxFuel = 100, hoverCost = 10, airBoostCost = 35;
 
+    [Header("Jetpack")]
+    [Range(1f, 2f)] public float airBoostSpeedMult = 2;
+    [SerializeField] float hoverAcceleration = 0.2f;
     float airBoostSpeed;
-    float hoverAcceleration = 0.2f;
 
+    [Header("Movement")]
+    [SerializeField] float moveSpeed = 1;
+    [SerializeField] float airAcceleration = 0.5f;
     float velX, velY, velZ;
-    float moveSpeed = 1;
-    float airAcceleration = 0.5f;
 
-    private float jumpSpeed = 2.5f;
+    [Header("Jump")]
+    [SerializeField] private float jumpSpeed = 2.5f;
+    [Range(0f, 1f)] public float jumpCancelSpeedMult = 0.5f;
     float jumpCancelSpeed;
-
     string jumpStateMachine = "none";
 
     // Start is called before the first frame update
@@ -33,8 +42,8 @@ public class Avatar : MonoBehaviour
         velY = 0;
         velZ = 0;
 
-        jumpCancelSpeed = jumpSpeed / 2;
-        airBoostSpeed = jumpSpeed * 2;
+        jumpCancelSpeed = jumpSpeed * jumpCancelSpeedMult;
+        airBoostSpeed = jumpSpeed * airBoostSpeedMult;
 
         fuel = maxFuel;
     }
@@ -50,7 +59,7 @@ public class Avatar : MonoBehaviour
         //Jetpack
         if (cc.isGrounded && fuel < maxFuel)
         {
-            fuel++;
+            fuel += fuelRecovery;
         }
 
         if (!cc.isGrounded && Input.GetKey(KeyCode.LeftShift) && fuel > 0)

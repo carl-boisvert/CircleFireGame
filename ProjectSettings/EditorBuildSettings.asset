@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6a3fe93854403554b936fe32b43708e3
+  - enabled: 1
+    path: Assets/Emeric-Dev/EmericDEV.unity
+    guid: 28431a289efa30447b3e5f893a0a18bf
   m_configObjects: {}

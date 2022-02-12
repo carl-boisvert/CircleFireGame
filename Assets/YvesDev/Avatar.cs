@@ -91,10 +91,9 @@ public class Avatar : MonoBehaviour
         return targetAngle;
     }
 
-    private void HorizontalMove(bool normalize, bool orient, float speedMult)
+    private void HorizontalMove(bool orient, float speedMult)
     {
-        if (normalize) movement = new Vector3(velX, 0, velZ).normalized;
-        else movement = new Vector3(velX, 0, velZ);
+        movement = new Vector3(velX, 0, velZ);
 
         float targetAngle = Orientation(orient);
 
@@ -157,7 +156,7 @@ public class Avatar : MonoBehaviour
         velX = Input.GetAxis("Horizontal");
         velZ = Input.GetAxis("Vertical");
 
-        HorizontalMove(true, true, 1);
+        HorizontalMove(true, 1);
 
         FuelRecovery();
 
@@ -183,7 +182,7 @@ public class Avatar : MonoBehaviour
 
         CapAirVelocities();
 
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(false, false, 1);
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(false, 1);
 
         if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 
@@ -211,22 +210,11 @@ public class Avatar : MonoBehaviour
 
         CapAirVelocities();
 
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(false, true, 1);
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, 1);
 
-        //HorizontalMove(true, true, 1);
         FuelStabilizer();
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) StopHover();
-
-        /*float frameAcc = airAcceleration * Time.deltaTime;
-        velX += Input.GetAxis("Horizontal") * frameAcc;
-        velZ += Input.GetAxis("Vertical") * frameAcc;
-
-        CapAirVelocities();
-
-        if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
-
-        if (velY < 0 && cc.isGrounded) StopJump();*/
     }
 
     private void StopHover()

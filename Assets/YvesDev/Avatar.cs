@@ -13,7 +13,7 @@ public class Avatar : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] float moveSpeed = 3;
-    [SerializeField] float airAcceleration = 1.5f;
+    [SerializeField] float airAcceleration = 3f;
     float velX, velY, velZ;
     Vector3 movement;
     [Range(0f, 1f)] public float turnSmoothTime = 0.1f;
@@ -34,7 +34,7 @@ public class Avatar : MonoBehaviour
 
     [Header("Jetpack")]
     [SerializeField] bool hoverUnlocked = false;
-    [SerializeField] bool airBoostUnlocked=false; 
+    [SerializeField] bool airBoostUnlocked = false;
     [Range(1f, 2f)] public float airBoostSpeedMult = 1.5f;
     [SerializeField] float hoverAcceleration = 5.5f;
     float airBoostSpeed;
@@ -62,24 +62,10 @@ public class Avatar : MonoBehaviour
         //Movement
         RunState();
 
-        ////// TODO
-
-        movement = new Vector3(velX, 0, velZ).normalized;
+        //Apply gravity
         movement.y = velY;
 
-        if (StateMachine == "Walk")
-        {
-            float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0, angle, 0);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            cc.Move(moveDir * moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            cc.Move(movement * moveSpeed * Time.deltaTime);
-        }
+        cc.Move(movement * Time.deltaTime);
     }
 
     private void Gravity()
@@ -89,6 +75,31 @@ public class Avatar : MonoBehaviour
             if (velY > termVelY) velY += gravity * Time.deltaTime;
         }
         else velY = termVelY;
+    }
+
+    private float Orientation(bool rotate)
+    {
+        //Angle to face
+        float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        if (rotate)
+        {
+            // Smoothened angle
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
+            //Applying rotation
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+        }
+        return targetAngle;
+    }
+
+    private void HorizontalMove(bool normalize, bool orient, float speedMult)
+    {
+        if (normalize) movement = new Vector3(velX, 0, velZ).normalized;
+        else movement = new Vector3(velX, 0, velZ);
+
+        float targetAngle = Orientation(orient);
+
+        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        movement = moveDir * moveSpeed * speedMult;
     }
 
     //STATE MACHINES
@@ -101,7 +112,6 @@ public class Avatar : MonoBehaviour
             if (hoverUnlocked && Input.GetKey(KeyCode.LeftShift) && fuel > 0 && StateMachine == "Jump") StartHover();
             if (airBoostUnlocked && Input.GetKey(KeyCode.Q) && fuel > airBoostCost) StartAirBoost();
         }
-
         else if (Input.GetKeyDown(KeyCode.Space) && (StateMachine == "Idle" || StateMachine == "Walk")) StartJump();
         else if (StateMachine == "Idle" && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) StartWalk();
         else if (StateMachine == "none") StartIdle();
@@ -125,6 +135,9 @@ public class Avatar : MonoBehaviour
         velX = Mathf.Lerp(velX, 0, 0.75f);
         velZ = Mathf.Lerp(velZ, 0, 0.75f);
 
+        movement = new Vector3(velX, 0, velZ);
+        movement *= moveSpeed;
+
         FuelRecovery();
     }
 
@@ -143,6 +156,8 @@ public class Avatar : MonoBehaviour
         // Change the Velocities
         velX = Input.GetAxis("Horizontal");
         velZ = Input.GetAxis("Vertical");
+
+        HorizontalMove(true, true, 1);
 
         FuelRecovery();
 
@@ -168,6 +183,8 @@ public class Avatar : MonoBehaviour
 
         CapAirVelocities();
 
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(false, false, 1);
+
         if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 
         if (velY < 0 && cc.isGrounded) StopJump();
@@ -188,6 +205,15 @@ public class Avatar : MonoBehaviour
         if (velY <= hoverAcceleration) velY += hoverAcceleration * Time.deltaTime;
         fuel -= hoverCost * Time.deltaTime;
 
+        float frameAcc = airAcceleration * Time.deltaTime;
+        velX += Input.GetAxis("Horizontal") * frameAcc;
+        velZ += Input.GetAxis("Vertical") * frameAcc;
+
+        CapAirVelocities();
+
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(false, true, 1);
+
+        //HorizontalMove(true, true, 1);
         FuelStabilizer();
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) StopHover();
@@ -211,7 +237,6 @@ public class Avatar : MonoBehaviour
     private void StartAirBoost()
     {
         StateMachine = "AirBoost";
-        //velY = jumpSpeed;
         velY = airBoostSpeed;
         fuel -= airBoostCost;
         FuelStabilizer();
@@ -220,15 +245,6 @@ public class Avatar : MonoBehaviour
 
     private void AirBoost()
     {
-        /*float frameAcc = airAcceleration * Time.deltaTime;
-        velX += Input.GetAxis("Horizontal") * frameAcc;
-        velZ += Input.GetAxis("Vertical") * frameAcc;
-
-        CapAirVelocities();
-
-        if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
-
-        if (velY < 0 && cc.isGrounded) StopJump();*/
     }
 
     private void StopAirBoost()

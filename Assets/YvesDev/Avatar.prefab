@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3475032539033325001}
   m_Layer: 0
   m_Name: Avatar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60b223cf80278754b90ef58671b29816, type: 2}
+  - {fileID: 2100000, guid: 81ea514308731e0419f678b22ac6ca60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,9 +199,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a336d360922de43952a6767a9dd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   gravity: -5
   termVelY: -20
   moveSpeed: 3
-  airAcceleration: 0.5
+  airAcceleration: 1.5
+  turnSmoothTime: 0.1
   jumpSpeed: 5
   jumpCancelSpeedMult: 0.6
+  maxFuel: 100
+  fuelRecovery: 1
+  hoverCost: 10
+  airBoostCost: 35
+  airBoostSpeedMult: 2
+  hoverAcceleration: 5.5

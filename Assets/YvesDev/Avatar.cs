@@ -5,10 +5,25 @@ using UnityEngine;
 public class Avatar : MonoBehaviour
 {
     CharacterController cc;
+    public Transform cam;
 
     [Header("Gravity")]
     [SerializeField] float gravity = -2.5f;
     [SerializeField] private float termVelY = -5;
+
+    [Header("Movement")]
+    [SerializeField] float moveSpeed = 1;
+    [SerializeField] float airAcceleration = 0.5f;
+    float velX, velY, velZ;
+    Vector3 movement;
+    float turnSmoothTime = 0.1f;
+    float turnSmoothVel;
+
+    [Header("Jump")]
+    [SerializeField] private float jumpSpeed = 2.5f;
+    [Range(0f, 1f)] public float jumpCancelSpeedMult = 0.5f;
+    float jumpCancelSpeed;
+    string StateMachine = "none";
 
     [Header("Fuel")]
     [SerializeField] float maxFuel = 100;
@@ -21,17 +36,6 @@ public class Avatar : MonoBehaviour
     [Range(1f, 2f)] public float airBoostSpeedMult = 2;
     [SerializeField] float hoverAcceleration = 0.2f;
     float airBoostSpeed;
-
-    [Header("Movement")]
-    [SerializeField] float moveSpeed = 1;
-    [SerializeField] float airAcceleration = 0.5f;
-    float velX, velY, velZ;
-
-    [Header("Jump")]
-    [SerializeField] private float jumpSpeed = 2.5f;
-    [Range(0f, 1f)] public float jumpCancelSpeedMult = 0.5f;
-    float jumpCancelSpeed;
-    string jumpStateMachine = "none";
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +57,25 @@ public class Avatar : MonoBehaviour
     {
         Gravity();
 
-        //Horizontal Movement
+        //Movement
         RunState();
+
+        movement = new Vector3(velX, 0, velZ).normalized;
+        movement.y = velY;
+
+        if(StateMachine == "Walk")
+        {
+            float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            cc.Move(moveDir * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            cc.Move(movement * moveSpeed * Time.deltaTime);
+        }
 
         //Jetpack
         if (cc.isGrounded && fuel < maxFuel)
@@ -74,13 +95,6 @@ public class Avatar : MonoBehaviour
             fuel -= airBoostCost;
             FuelStabilizer();
         }
-
-        cc.Move(new Vector3(velX, velY, velZ));
-    }
-
-    private void LateUpdate()
-    {
-
     }
 
     private void Gravity()
@@ -127,20 +141,20 @@ public class Avatar : MonoBehaviour
     {
 
         //New State
-        if (Input.GetKeyDown(KeyCode.Space) && (jumpStateMachine == "Idle" || jumpStateMachine == "Walk")) StartJump();
-        else if (jumpStateMachine == "Idle" && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) StartWalk();
-        else if (jumpStateMachine == "none") StartIdle();
+        if (Input.GetKeyDown(KeyCode.Space) && (StateMachine == "Idle" || StateMachine == "Walk")) StartJump();
+        else if (StateMachine == "Idle" && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) StartWalk();
+        else if (StateMachine == "none") StartIdle();
 
 
         //Ongoing States
-        if (jumpStateMachine == "Idle") Idle();
-        if (jumpStateMachine == "Walk") Walk();
-        if (jumpStateMachine == "Jump") Jump();
+        if (StateMachine == "Idle") Idle();
+        if (StateMachine == "Walk") Walk();
+        if (StateMachine == "Jump") Jump();
     }
 
     private void StartIdle()
     {
-        jumpStateMachine = "Idle";
+        StateMachine = "Idle";
     }
 
     private void Idle()
@@ -151,38 +165,39 @@ public class Avatar : MonoBehaviour
 
     private void StopIdle()
     {
-        jumpStateMachine = "none";
+        StateMachine = "none";
     }
 
     private void StartWalk()
     {
-        jumpStateMachine = "Walk";
+        StateMachine = "Walk";
     }
 
     private void Walk()
     {
         // Change the Velocities
-        velX = Input.GetAxis("Vertical") * moveSpeed;
-        velZ = Input.GetAxis("Horizontal") * -moveSpeed;
+        velX = Input.GetAxis("Horizontal");
+        velZ = Input.GetAxis("Vertical");
 
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) StopWalk();
     }
 
     private void StopWalk()
     {
-        jumpStateMachine = "none";
+        StateMachine = "none";
     }
 
     private void StartJump()
     {
-        jumpStateMachine = "Jump";
+        StateMachine = "Jump";
         velY = jumpSpeed;
     }
 
     private void Jump()
     {
-        velX += Input.GetAxis("Vertical") * airAcceleration;
-        velZ += Input.GetAxis("Horizontal") * -airAcceleration;
+        float frameAcc = airAcceleration * Time.deltaTime;
+        velX += Input.GetAxis("Horizontal") * frameAcc;
+        velZ += Input.GetAxis("Vertical") * frameAcc;
 
         CapAirVelocities();
 
@@ -193,15 +208,15 @@ public class Avatar : MonoBehaviour
 
     private void StopJump()
     {
-        jumpStateMachine = "none";
+        StateMachine = "none";
     }
 
     private void CapAirVelocities()
     {
-        if (velX > moveSpeed) velX = moveSpeed;
-        else if (velX < -moveSpeed) velX = -moveSpeed;
+        if (velX > 1) velX = 1;
+        else if (velX < -1) velX = -1;
 
-        if (velZ > moveSpeed) velZ = moveSpeed;
-        else if (velZ < -moveSpeed) velZ = -moveSpeed;
+        if (velZ > 1) velZ = 1;
+        else if (velZ < -1) velZ = -1;
     }
 }

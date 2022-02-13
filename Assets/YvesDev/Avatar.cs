@@ -44,6 +44,7 @@ public class Avatar : MonoBehaviour
     public LayerMask whatsIsGrappleable;
     Vector3 grappleTo;
     public GameObject drone;
+    [SerializeField] bool grappleUnlocked = false;
     [SerializeField] float grappleSpeed = 6f;
     [SerializeField] float grapplingCapsuleRadius = 5f;
 
@@ -112,7 +113,7 @@ public class Avatar : MonoBehaviour
     //STATE MACHINES
     private void RunState()
     {
-        if (Input.GetMouseButtonDown(0)) StartGrapple();
+        if (Input.GetMouseButtonDown(0) || grappleUnlocked) StartGrapple();
         else if (StateMachine == "Jump")
         {
             if (hoverUnlocked && Input.GetKey(KeyCode.LeftShift) && fuel > 0 && StateMachine == "Jump") StartHover();

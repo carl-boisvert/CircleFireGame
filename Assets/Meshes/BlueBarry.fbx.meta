@@ -27,6 +27,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ScaphandreParts_Mat
+    second: {fileID: 2100000, guid: e4d7d51da093eb84ca9f462d14b38f33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Scaphandre_Mat
     second: {fileID: 2100000, guid: 1f9fd603dbce11d4bbdb3582c470c99f, type: 2}
   materials:

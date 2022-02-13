@@ -39,9 +39,10 @@ public class Avatar : MonoBehaviour
     [SerializeField] float hoverAcceleration = 5.5f;
     float airBoostSpeed;
 
-    [Header("Grappling Hook")]
+    [Header("Grappling Drone")]
     public LayerMask whatsIsGrappleable;
-    public Vector3 grappleTo;
+    Vector3 grappleTo;
+    public GameObject drone;
     [SerializeField] float grappleSpeed = 6f;
 
     // Start is called before the first frame update
@@ -252,10 +253,10 @@ public class Avatar : MonoBehaviour
         velY = 0;
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, whatsIsGrappleable);
-        Debug.Log("Found " + hitColliders.Length + " grappling targets");
 
         float minDis = 1000f, distance;
 
+        //Find closest
         foreach (var hitCollider in hitColliders)
         {
             Vector3 closestPoint = hitCollider.ClosestPoint(transform.position);
@@ -267,6 +268,8 @@ public class Avatar : MonoBehaviour
                 grappleTo = closestPoint;
             }
         }
+
+        drone.SendMessage("StartGrapple", grappleTo);
     }
 
     private void Grapple()
@@ -289,9 +292,11 @@ public class Avatar : MonoBehaviour
 
     private void StopGrapple()
     {
-        Debug.Log("Stopping Grapple");
+        drone.SendMessage("StopGrapple");
+
         movement = Vector3.zero;
         velY = 0;
+
         StateMachine = "Jump";
     }
 

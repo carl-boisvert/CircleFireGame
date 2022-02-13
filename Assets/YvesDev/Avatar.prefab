@@ -176,7 +176,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031866860260157804}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -278,9 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01279e8abfe7d0647bb9db0d94bad90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsGrappleable:
-    serializedVersion: 2
-    m_Bits: 8
   gunTip: {fileID: 7446777864230761221}
 --- !u!1 &1878892656769803695
 GameObject:
@@ -450,7 +447,7 @@ MonoBehaviour:
   whatsIsGrappleable:
     serializedVersion: 2
     m_Bits: 8
-  grappleTo: {x: 0, y: 0, z: 0}
+  drone: {fileID: 1031866860260157804}
   grappleSpeed: 6
 --- !u!1 &7989574390646684671
 GameObject:

@@ -295,6 +295,8 @@ public class Avatar : MonoBehaviour
         drone.SendMessage("StopGrapple");
 
         movement = Vector3.zero;
+        velX = 0;
+        velZ = 0;
         velY = 0;
 
         StateMachine = "Jump";

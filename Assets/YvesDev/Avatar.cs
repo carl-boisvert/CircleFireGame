@@ -39,6 +39,11 @@ public class Avatar : MonoBehaviour
     [SerializeField] float hoverAcceleration = 5.5f;
     float airBoostSpeed;
 
+    [Header("Grappling Hook")]
+    public LayerMask whatsIsGrappleable;
+    public Vector3 grappleTo;
+    [SerializeField] float grappleSpeed = 6f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,12 +62,11 @@ public class Avatar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Gravity();
+        if (StateMachine != "Grapple") Gravity();
 
         //Movement
         RunState();
 
-        //Apply gravity
         movement.y = velY;
 
         cc.Move(movement * Time.deltaTime);
@@ -75,6 +79,7 @@ public class Avatar : MonoBehaviour
             if (velY > termVelY) velY += gravity * Time.deltaTime;
         }
         else velY = termVelY;
+
     }
 
     private float Orientation(bool rotate)
@@ -104,9 +109,8 @@ public class Avatar : MonoBehaviour
     //STATE MACHINES
     private void RunState()
     {
-
-        //New State
-        if (StateMachine == "Jump")
+        if (Input.GetMouseButtonDown(0)) StartGrapple();
+        else if (StateMachine == "Jump")
         {
             if (hoverUnlocked && Input.GetKey(KeyCode.LeftShift) && fuel > 0 && StateMachine == "Jump") StartHover();
             if (airBoostUnlocked && Input.GetKey(KeyCode.Q) && fuel > airBoostCost) StartAirBoost();
@@ -122,6 +126,7 @@ public class Avatar : MonoBehaviour
         if (StateMachine == "Jump") Jump();
         if (StateMachine == "Hover") Hover();
         if (StateMachine == "AirBoost") AirBoost();
+        if (StateMachine == "Grapple") Grapple();
     }
 
     private void StartIdle()
@@ -237,6 +242,56 @@ public class Avatar : MonoBehaviour
 
     private void StopAirBoost()
     {
+        StateMachine = "Jump";
+    }
+
+    private void StartGrapple()
+    {
+        StateMachine = "Grapple";
+        movement = Vector3.zero;
+        velY = 0;
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, whatsIsGrappleable);
+        Debug.Log("Found " + hitColliders.Length + " grappling targets");
+
+        float minDis = 1000f, distance;
+
+        foreach (var hitCollider in hitColliders)
+        {
+            Vector3 closestPoint = hitCollider.ClosestPoint(transform.position);
+            distance = (transform.position - closestPoint).magnitude;
+
+            if(distance < minDis)
+            {
+                minDis = distance;
+                grappleTo = closestPoint;
+            }
+        }
+    }
+
+    private void Grapple()
+    {
+        Vector3 direction = grappleTo - transform.position;
+        if (direction.magnitude > 1f)
+        {
+            direction.Normalize();
+            movement = direction.normalized * grappleSpeed;
+            velY = direction.y;
+        }
+        else
+        {
+            movement = Vector3.zero;
+            velY = 0;
+        }
+
+        if (Input.GetMouseButtonUp(0)) StopGrapple();
+    }
+
+    private void StopGrapple()
+    {
+        Debug.Log("Stopping Grapple");
+        movement = Vector3.zero;
+        velY = 0;
         StateMachine = "Jump";
     }
 

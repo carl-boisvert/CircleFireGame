@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Bundle Unity Prefab.meta
 guid: 814e328dae5908d47a9dbd416cf9ce96
+=======
+guid: ae21c8e253286b74bb563407a92fc929
+>>>>>>> a4fed40e90ad3091a8f8f717ec4b91c46a6cb4a1:Assets/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

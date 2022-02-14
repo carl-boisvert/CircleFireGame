@@ -6,6 +6,7 @@ public class Avatar : MonoBehaviour
 {
     CharacterController cc;
     public Transform cam;
+    public Transform GrappleMax;
 
     [Header("Gravity")]
     [SerializeField] float gravity = -5f;
@@ -43,7 +44,9 @@ public class Avatar : MonoBehaviour
     public LayerMask whatsIsGrappleable;
     Vector3 grappleTo;
     public GameObject drone;
+    [SerializeField] bool grappleUnlocked = false;
     [SerializeField] float grappleSpeed = 6f;
+    [SerializeField] float grapplingCapsuleRadius = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -110,7 +113,7 @@ public class Avatar : MonoBehaviour
     //STATE MACHINES
     private void RunState()
     {
-        if (Input.GetMouseButtonDown(0)) StartGrapple();
+        if (Input.GetMouseButtonDown(0) || grappleUnlocked) StartGrapple();
         else if (StateMachine == "Jump")
         {
             if (hoverUnlocked && Input.GetKey(KeyCode.LeftShift) && fuel > 0 && StateMachine == "Jump") StartHover();
@@ -248,12 +251,18 @@ public class Avatar : MonoBehaviour
 
     private void StartGrapple()
     {
-        StateMachine = "Grapple";
+        
         movement = Vector3.zero;
         velY = 0;
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, whatsIsGrappleable);
+        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, whatsIsGrappleable);
+        Collider[] hitColliders = Physics.OverlapCapsule(transform.position, GrappleMax.position, grapplingCapsuleRadius, whatsIsGrappleable);
 
+        if(hitColliders.Length <= 0)
+        {
+            return;
+        }
+        
         float minDis = 1000f, distance;
 
         //Find closest
@@ -268,7 +277,8 @@ public class Avatar : MonoBehaviour
                 grappleTo = closestPoint;
             }
         }
-
+        
+        StateMachine = "Grapple";
         drone.SendMessage("StartGrapple", grappleTo);
     }
 
@@ -344,5 +354,11 @@ public class Avatar : MonoBehaviour
     public void SetJumpSpeed(float newSpeed)
     {
         jumpSpeed = newSpeed;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, GrappleMax.position);
     }
 }

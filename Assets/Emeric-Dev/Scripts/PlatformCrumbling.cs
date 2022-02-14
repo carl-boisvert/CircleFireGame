@@ -18,7 +18,7 @@ public class PlatformCrumbling : Platform
         animator.speed = crumbleSpeed;
     }
 
-    protected override void OnPlayerLand(GameObject player)
+    public override void OnPlayerLand()
     {
         if (!recharging)
             StartCoroutine(Crumble());

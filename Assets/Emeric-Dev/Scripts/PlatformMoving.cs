@@ -69,4 +69,25 @@ public class PlatformMoving : Platform
         }
         return currentTarget;
     }
+
+    void OnDrawGizmos(){
+        Gizmos.color = Color.green;
+        foreach (Transform node in _nodes){
+            Gizmos.DrawSphere(node.position, 1f);
+        }
+
+        if (pathingType == PathingType.loop){
+            for (int i = 0; i < (_nodes.Length); i++){
+                if (i == _nodes.Length - 1){
+                    Gizmos.DrawLine(_nodes[i].position, _nodes[0].position);
+                } else {
+                    Gizmos.DrawLine(_nodes[i].position, _nodes[i + 1].position);
+                }
+            }
+        } else {
+            for (int i = 0; i < (_nodes.Length - 1); i++){
+                Gizmos.DrawLine(_nodes[i].position, _nodes[i + 1].position);
+            }
+        }
+    }
 }

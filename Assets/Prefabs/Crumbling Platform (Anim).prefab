@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 1629303080058200355}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: platform-crumbling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   animator: {fileID: 1629303080717292228}
   crumbleDelay: 0.5
   rechargeDelay: 2
+  crumbleSpeed: 1
 --- !u!1 &1629303080717292230
 GameObject:
   m_ObjectHideFlags: 0

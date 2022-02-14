@@ -6,10 +6,10 @@ public class PlatformBouncing : Platform
 {
     [SerializeField] float force = 1f;
     
-    protected override void OnPlayerLand(GameObject player)
+    public override void OnPlayerLand()
     {
         if (player.TryGetComponent<Avatar>(out Avatar playerAvatar)){
-            playerAvatar.SetVelocityY(playerAvatar.GetVelocityY() + force);
+            playerAvatar.SetVelocityY(force);
         }
     }
 }

@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
+    protected static Avatar player;
+    void Awake()
+    {
+        if (player == null) { player = FindObjectOfType<Avatar>(); }
+    }
+
+    public virtual void OnPlayerLand(){
+        player.transform.SetParent(this.transform);
+    }
+    
+    /*
     protected virtual void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player")){
@@ -18,11 +29,9 @@ public class Platform : MonoBehaviour
         }
     }
 
-    protected virtual void OnPlayerLand(GameObject player){
-        player.transform.SetParent(this.transform);
-    }
-
-    protected virtual void OnPlayerExit(GameObject player){
+    protected virtual void OnPlayerExit(){
         player.transform.SetParent(null);
     }
+
+    */
 }

@@ -6,6 +6,7 @@ public class Avatar : MonoBehaviour
 {
     CharacterController cc;
     public Transform cam;
+    
     public Transform GrappleMax;
 
     [Header("Gravity")]
@@ -38,6 +39,7 @@ public class Avatar : MonoBehaviour
     [SerializeField] bool airBoostUnlocked = false;
     [Range(1f, 2f)] public float airBoostSpeedMult = 1.5f;
     [SerializeField] float hoverAcceleration = 5.5f;
+    [SerializeField] float maxHoverSpeed = 1f;
     float airBoostSpeed;
 
     [Header("Grappling Drone")]
@@ -82,8 +84,7 @@ public class Avatar : MonoBehaviour
         {
             if (velY > termVelY) velY += gravity * Time.deltaTime;
         }
-        else velY = termVelY;
-
+        else velY = gravity * 0.5f;
     }
 
     private float Orientation(bool rotate)
@@ -113,11 +114,11 @@ public class Avatar : MonoBehaviour
     //STATE MACHINES
     private void RunState()
     {
-        if (Input.GetMouseButtonDown(0) || grappleUnlocked) StartGrapple();
+        if (Input.GetMouseButtonDown(0) && grappleUnlocked) StartGrapple();
         else if (StateMachine == "Jump")
         {
             if (hoverUnlocked && Input.GetKey(KeyCode.LeftShift) && fuel > 0 && StateMachine == "Jump") StartHover();
-            if (airBoostUnlocked && Input.GetKey(KeyCode.Q) && fuel > airBoostCost) StartAirBoost();
+            if (airBoostUnlocked && Input.GetKeyDown(KeyCode.Q) && fuel > airBoostCost) StartAirBoost();
         }
         else if (Input.GetKeyDown(KeyCode.Space) && (StateMachine == "Idle" || StateMachine == "Walk")) StartJump();
         else if (StateMachine == "Idle" && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) StartWalk();
@@ -191,7 +192,7 @@ public class Avatar : MonoBehaviour
 
         CapAirVelocities();
 
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(false, 1);
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, 1);
 
         if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 
@@ -210,7 +211,7 @@ public class Avatar : MonoBehaviour
 
     private void Hover()
     {
-        if (velY <= hoverAcceleration) velY += hoverAcceleration * Time.deltaTime;
+        if (velY <= maxHoverSpeed) velY += hoverAcceleration * Time.deltaTime;
         fuel -= hoverCost * Time.deltaTime;
 
         float frameAcc = airAcceleration * Time.deltaTime;
@@ -329,6 +330,16 @@ public class Avatar : MonoBehaviour
     private void FuelRecovery()
     {
         if (fuel < maxFuel) fuel += fuelRecovery;
+    }
+
+    public float GetFuel()
+    {
+        return fuel;
+    }
+
+    public float GetMaxFuel()
+    {
+        return maxFuel;
     }
 
     public float GetVelocityY()

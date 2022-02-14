@@ -7,6 +7,10 @@ public class Drone : MonoBehaviour
     private LineRenderer lr;
     private Vector3 grapplePoint;
     private Quaternion originalRotation;
+    public Transform cam;
+
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVel;
 
     public Transform gunTip;
 
@@ -39,7 +43,12 @@ public class Drone : MonoBehaviour
 
     private void Idle()
     {
+        float targetAngle = cam.eulerAngles.y;
 
+        // Smoothened angle
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVel, turnSmoothTime);
+        //Applying rotation
+        transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
     private void StopIdle()

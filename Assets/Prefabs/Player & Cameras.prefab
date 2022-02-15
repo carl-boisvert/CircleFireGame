@@ -78,6 +78,9 @@ GameObject:
   - component: {fileID: 3708555054659617392}
   - component: {fileID: 3708555054659617407}
   - component: {fileID: 3708555054659617400}
+  - component: {fileID: 3475032538242301296}
+  - component: {fileID: 3475032538242301297}
+  - component: {fileID: 3475032538242301295}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Player
@@ -134,6 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 7735100628572704846}
   GrappleMax: {fileID: 7735100628917603410}
+  jumpKey: 32
+  hoverKey: 304
+  airBoostKey: 32
   gravity: -25
   termVelY: -100
   moveSpeed: 8
@@ -142,12 +148,12 @@ MonoBehaviour:
   jumpSpeed: 15
   jumpCancelSpeedMult: 0.7
   maxFuel: 100
-  fuelRecovery: 1
+  fuelRecovery: 100
   hoverCost: 10
-  airBoostCost: 35
+  airBoostCost: 60
   hoverUnlocked: 1
   airBoostUnlocked: 1
-  airBoostSpeedMult: 1.5
+  airBoostSpeedMult: 1.2
   hoverAcceleration: 23
   maxHoverSpeed: 1
   whatsIsGrappleable:
@@ -172,6 +178,130 @@ MonoBehaviour:
   characterController: {fileID: 3708555054659617392}
   rayLength: 0.2
   player: {fileID: 3708555054659617407}
+  checkBoxSize: {x: 0.8, y: 0.5, z: 0.8}
+  rayHeight: 0.1
+  DEBUG: 0
+--- !u!82 &3475032538242301296
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708555054659617406}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!81 &3475032538242301297
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708555054659617406}
+  m_Enabled: 1
+--- !u!114 &3475032538242301295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708555054659617406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9ad8e010393c44f8f7d8caccf3062e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 3475032538242301296}
+  audioClips:
+  - {fileID: 8300000, guid: b3e9a34d88067044b9cacf77b3649288, type: 3}
+  - {fileID: 8300000, guid: bd6eb21770a7baf4eaa33bb7bd418e50, type: 3}
+  - {fileID: 8300000, guid: e75f26f0a160566408d091db44816ab8, type: 3}
 --- !u!1 &7903270963045446729
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +342,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5829181182266551288, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.2592592
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -308,19 +438,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148820, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.23604302
+      value: -0.23604304
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148820, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016720177
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148820, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000040614467
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148821, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.2592592
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -340,15 +470,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017157243
+      value: -0.000000017156292
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000013120692
+      value: 0.0000000013119965
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031379, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.2592592
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124497, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Damping
@@ -436,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.2592592
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_XAxis.m_InvertInput
@@ -510,11 +640,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000022833235
+      value: -0.0000000021674575
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 8.061997e-11
+      value: 8.5255907e-11
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -532,7 +662,8 @@ PrefabInstance:
       propertyPath: m_UpdateMethod
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7500249887376435682, guid: ee320303f889c7740927741bde010a6b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ee320303f889c7740927741bde010a6b, type: 3}
 --- !u!4 &7735100628572704846 stripped
 Transform:

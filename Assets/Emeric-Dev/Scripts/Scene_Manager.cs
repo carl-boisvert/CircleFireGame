@@ -9,6 +9,7 @@ public class Scene_Manager : MonoBehaviour
     [SerializeField] float transitionDuration = 2f;
 
     public void ChangeToScene(string sceneName){
+        Time.timeScale = 1f;
         StartCoroutine(ChangeToSceneCoroutine(sceneName));
     }
     

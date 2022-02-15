@@ -10,6 +10,7 @@ public class Avatar : MonoBehaviour
     CharacterController cc;
     public Transform cam;
     public Transform GrappleMax;
+    public Audio_AudioPlayer audioPlayer;
 
     [Header("Inputs")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
@@ -273,6 +274,7 @@ public class Avatar : MonoBehaviour
     private void StartHover()
     {
         StateMachine = "Hover";
+        //audioPlayer.PlayAudioClip(0);
     }
 
     private void Hover()
@@ -296,6 +298,7 @@ public class Avatar : MonoBehaviour
     private void StopHover()
     {
         StateMachine = "Jump";
+        //audioPlayer.StopAudio();
     }
 
     private void StartAirBoost()
@@ -305,6 +308,8 @@ public class Avatar : MonoBehaviour
         fuel -= airBoostCost;
         FuelStabilizer();
         StopAirBoost();
+
+        //audioPlayer.PlayAudioClip(1);
     }
 
     private void AirBoost()

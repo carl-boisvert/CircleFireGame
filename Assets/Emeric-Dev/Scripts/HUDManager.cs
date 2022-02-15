@@ -10,6 +10,6 @@ public class HUDManager : MonoBehaviour
 
     void Update()
     {
-        //fuelGauge.localScale = new Vector3(Mathf.InverseLerp(0f, player.maxFuel, player.fuel), 1f, 1f);
+        fuelGauge.localScale = new Vector3(Mathf.InverseLerp(0f, player.GetMaxFuel(), player.GetFuel()), 1f, 1f);
     }
 }

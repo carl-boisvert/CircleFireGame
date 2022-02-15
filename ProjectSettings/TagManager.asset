@@ -7,6 +7,8 @@ TagManager:
   - platform-crumbling
   - platform-moving
   - platform-bouncing
+  - jetpack
+  - drone
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ public class PowerCell : MonoBehaviour
     {
         if (other.CompareTag("Player")){
             amountHeld++;
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

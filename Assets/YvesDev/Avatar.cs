@@ -6,10 +6,15 @@ public class Avatar : MonoBehaviour
 {
     #region Variables
 
+    [Header("Other GameObjects")]
     CharacterController cc;
     public Transform cam;
-
     public Transform GrappleMax;
+
+    [Header("Inputs")]
+    [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode hoverKey = KeyCode.LeftShift;
+    [SerializeField] KeyCode airBoostKey = KeyCode.Space;
 
     [Header("Gravity")]
     [SerializeField] float gravity = -5f;
@@ -178,10 +183,10 @@ public class Avatar : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && grappleUnlocked && grappleCollider) StartGrapple();
         else if (StateMachine == "Jump")
         {
-            if (hoverUnlocked && Input.GetKey(KeyCode.LeftShift) && fuel > 0 && StateMachine == "Jump") StartHover();
-            if (airBoostUnlocked && Input.GetKeyDown(KeyCode.Q) && fuel > airBoostCost) StartAirBoost();
+            if (hoverUnlocked && Input.GetKey(hoverKey) && fuel > 0 && StateMachine == "Jump") StartHover();
+            if (airBoostUnlocked && Input.GetKeyDown(airBoostKey) && fuel > airBoostCost) StartAirBoost();
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && (StateMachine == "Idle" || StateMachine == "Walk")) StartJump();
+        else if (Input.GetKeyDown(jumpKey) && (StateMachine == "Idle" || StateMachine == "Walk")) StartJump();
         else if (StateMachine == "Idle" && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) StartWalk();
         else if (StateMachine == "none") StartIdle();
 

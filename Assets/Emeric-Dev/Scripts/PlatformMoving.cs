@@ -25,8 +25,7 @@ public class PlatformMoving : Platform
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Vector3 targetPos = _nodes[_targetNodeIndex].position;
 
@@ -35,7 +34,7 @@ public class PlatformMoving : Platform
             targetPos = _nodes[_targetNodeIndex].position;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, _moveSpeed * Time.fixedDeltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, _moveSpeed * Time.deltaTime);
     }
 
     void ChangeTargetNode(int currentTarget){

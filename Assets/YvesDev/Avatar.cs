@@ -47,6 +47,7 @@ public class Avatar : MonoBehaviour
     [Header("Grappling Drone")]
     public LayerMask whatsIsGrappleable;
     Vector3 grappleTo;
+    Collider grappleCollider;
     public GameObject drone;
     [SerializeField] bool grappleUnlocked = false;
     [SerializeField] float grappleSpeed = 6f;
@@ -73,6 +74,8 @@ public class Avatar : MonoBehaviour
     void Update()
     {
         if (StateMachine != "Grapple") Gravity();
+
+        if (grappleUnlocked) CheckForGrapplePoints();
 
         //Movement
         RunState();
@@ -115,6 +118,7 @@ public class Avatar : MonoBehaviour
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         movement = moveDir * moveSpeed * speedMult;
     }
+
     private void CapAirVelocities()
     {
         if (velX > 1) velX = 1;
@@ -138,13 +142,40 @@ public class Avatar : MonoBehaviour
         else fuel = maxFuel;
     }
 
+    private void CheckForGrapplePoints()
+    {
+        Collider[] hitColliders = Physics.OverlapCapsule(transform.position, GrappleMax.position, grapplingCapsuleRadius, whatsIsGrappleable);
+
+        if (hitColliders.Length <= 0)
+        {
+            grappleCollider = null;
+            return;
+        }
+
+        float minDis = 1000f, distance;
+
+        //Find closest
+        foreach (var hitCollider in hitColliders)
+        {
+            Vector3 closestPoint = hitCollider.ClosestPoint(transform.position);
+            distance = (transform.position - closestPoint).magnitude;
+
+            if (distance < minDis)
+            {
+                minDis = distance;
+                grappleCollider = hitCollider;
+                grappleTo = closestPoint;
+            }
+        }
+    }
+
     #endregion
 
     #region State Machine
     //STATE MACHINES
     private void RunState()
     {
-        if (Input.GetMouseButtonDown(0) && grappleUnlocked) StartGrapple();
+        if (Input.GetMouseButtonDown(0) && grappleUnlocked && grappleCollider) StartGrapple();
         else if (StateMachine == "Jump")
         {
             if (hoverUnlocked && Input.GetKey(KeyCode.LeftShift) && fuel > 0 && StateMachine == "Jump") StartHover();
@@ -285,29 +316,6 @@ public class Avatar : MonoBehaviour
 
         movement = Vector3.zero;
         velY = 0;
-
-        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, whatsIsGrappleable);
-        Collider[] hitColliders = Physics.OverlapCapsule(transform.position, GrappleMax.position, grapplingCapsuleRadius, whatsIsGrappleable);
-
-        if (hitColliders.Length <= 0)
-        {
-            return;
-        }
-
-        float minDis = 1000f, distance;
-
-        //Find closest
-        foreach (var hitCollider in hitColliders)
-        {
-            Vector3 closestPoint = hitCollider.ClosestPoint(transform.position);
-            distance = (transform.position - closestPoint).magnitude;
-
-            if (distance < minDis)
-            {
-                minDis = distance;
-                grappleTo = closestPoint;
-            }
-        }
 
         StateMachine = "Grapple";
         drone.SendMessage("StartGrapple", grappleTo);

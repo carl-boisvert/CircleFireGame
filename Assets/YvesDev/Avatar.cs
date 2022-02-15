@@ -167,8 +167,6 @@ public class Avatar : MonoBehaviour
                 grappleTo = closestPoint;
             }
         }
-
-        Debug.Log("Checked Grappling, Found :" + grappleCollider);
     }
 
     #endregion

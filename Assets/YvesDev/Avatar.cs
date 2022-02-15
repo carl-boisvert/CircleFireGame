@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Avatar : MonoBehaviour
 {
+    #region Variables
+
     CharacterController cc;
     public Transform cam;
-    
+
     public Transform GrappleMax;
 
     [Header("Gravity")]
@@ -50,6 +52,8 @@ public class Avatar : MonoBehaviour
     [SerializeField] float grappleSpeed = 6f;
     [SerializeField] float grapplingCapsuleRadius = 5f;
 
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +82,7 @@ public class Avatar : MonoBehaviour
         cc.Move(movement * Time.deltaTime);
     }
 
+    #region Utilities
     private void Gravity()
     {
         if (!cc.isGrounded)
@@ -110,7 +115,32 @@ public class Avatar : MonoBehaviour
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         movement = moveDir * moveSpeed * speedMult;
     }
+    private void CapAirVelocities()
+    {
+        if (velX > 1) velX = 1;
+        else if (velX < -1) velX = -1;
 
+        if (velZ > 1) velZ = 1;
+        else if (velZ < -1) velZ = -1;
+    }
+
+    private void FuelStabilizer()
+    {
+        if (fuel < 0) fuel = 0;
+    }
+
+    private void FuelRecovery()
+    {
+        if (fuel < maxFuel)
+        {
+            fuel += fuelRecovery * Time.deltaTime;
+        }
+        else fuel = maxFuel;
+    }
+
+    #endregion
+
+    #region State Machine
     //STATE MACHINES
     private void RunState()
     {
@@ -224,7 +254,7 @@ public class Avatar : MonoBehaviour
 
         FuelStabilizer();
 
-        if (Input.GetKeyUp(KeyCode.LeftShift)) StopHover();
+        if (Input.GetKeyUp(KeyCode.LeftShift) || fuel <= 0) StopHover();
     }
 
     private void StopHover()
@@ -252,18 +282,18 @@ public class Avatar : MonoBehaviour
 
     private void StartGrapple()
     {
-        
+
         movement = Vector3.zero;
         velY = 0;
 
         //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50f, whatsIsGrappleable);
         Collider[] hitColliders = Physics.OverlapCapsule(transform.position, GrappleMax.position, grapplingCapsuleRadius, whatsIsGrappleable);
 
-        if(hitColliders.Length <= 0)
+        if (hitColliders.Length <= 0)
         {
             return;
         }
-        
+
         float minDis = 1000f, distance;
 
         //Find closest
@@ -272,13 +302,13 @@ public class Avatar : MonoBehaviour
             Vector3 closestPoint = hitCollider.ClosestPoint(transform.position);
             distance = (transform.position - closestPoint).magnitude;
 
-            if(distance < minDis)
+            if (distance < minDis)
             {
                 minDis = distance;
                 grappleTo = closestPoint;
             }
         }
-        
+
         StateMachine = "Grapple";
         drone.SendMessage("StartGrapple", grappleTo);
     }
@@ -313,24 +343,9 @@ public class Avatar : MonoBehaviour
         StateMachine = "Jump";
     }
 
-    private void CapAirVelocities()
-    {
-        if (velX > 1) velX = 1;
-        else if (velX < -1) velX = -1;
+    #endregion
 
-        if (velZ > 1) velZ = 1;
-        else if (velZ < -1) velZ = -1;
-    }
-
-    private void FuelStabilizer()
-    {
-        if (fuel < 0) fuel = 0;
-    }
-
-    private void FuelRecovery()
-    {
-        if (fuel < maxFuel) fuel += fuelRecovery;
-    }
+    #region Get & Set
 
     public float GetFuel()
     {
@@ -352,6 +367,21 @@ public class Avatar : MonoBehaviour
         velY = newVelY;
     }
 
+    public void SetHoverUnlocked(bool newV)
+    {
+        hoverUnlocked = newV;
+    }
+
+    public void SetAirBoostUnlocked(bool newV)
+    {
+        airBoostUnlocked = newV;
+    }
+
+    public void SetGrappleUnlocked(bool newV)
+    {
+        grappleUnlocked = newV;
+    }
+
     public void SetMoveSpeed(float newSpeed)
     {
         moveSpeed = newSpeed;
@@ -367,9 +397,5 @@ public class Avatar : MonoBehaviour
         jumpSpeed = newSpeed;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, GrappleMax.position);
-    }
+    #endregion
 }

@@ -149,6 +149,7 @@ MonoBehaviour:
   airBoostUnlocked: 1
   airBoostSpeedMult: 1.5
   hoverAcceleration: 23
+  maxHoverSpeed: 1
   whatsIsGrappleable:
     serializedVersion: 2
     m_Bits: 8
@@ -209,6 +210,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 238308710808750155}
     m_Modifications:
+    - target: {fileID: 5829181182266551288, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 2.2592592
+      objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -227,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000002149038
+      value: -0.0000000021490776
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 8.598954e-11
+      value: 8.599114e-11
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182615547369, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_FollowOffset.y
@@ -307,11 +312,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148820, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001672079
+      value: -0.000000016720177
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148820, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000004061595
+      value: -0.0000000040614467
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829181183322148821, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 2.2592592
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -331,11 +340,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016671155
+      value: 0.000000017157243
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000012748967
+      value: -0.0000000013120692
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829181183461031379, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 2.2592592
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124497, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Damping
@@ -422,6 +435,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 2.2592592
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_XAxis.m_InvertInput
       value: 0
       objectReference: {fileID: 0}
@@ -493,11 +510,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000022832862
+      value: -0.0000000022833235
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 8.061741e-11
+      value: 8.061997e-11
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -698,6 +715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01279e8abfe7d0647bb9db0d94bad90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 7735100628572704846}
+  turnSmoothTime: 0.1
   gunTip: {fileID: 7212199801344064691}
 --- !u!4 &9190790073455697339 stripped
 Transform:

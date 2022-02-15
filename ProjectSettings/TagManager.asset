@@ -9,6 +9,8 @@ TagManager:
   - platform-bouncing
   - jetpack
   - drone
+  - systems
+  - pause-menu
   layers:
   - Default
   - TransparentFX

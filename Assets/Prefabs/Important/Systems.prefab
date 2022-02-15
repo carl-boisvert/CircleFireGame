@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9131173142007341862}
+  - component: {fileID: 2652407977036322812}
   - component: {fileID: 9131173142007341861}
   - component: {fileID: 9131173142007341863}
   - component: {fileID: 4497054566311578155}
   - component: {fileID: 3721588615330564555}
   m_Layer: 0
   m_Name: Systems
-  m_TagString: Untagged
+  m_TagString: systems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2652407977036322812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131173142007341860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77239bb749d784148a31081b57f384c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
 --- !u!114 &9131173142007341861
 MonoBehaviour:
   m_ObjectHideFlags: 0

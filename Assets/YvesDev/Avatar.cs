@@ -293,7 +293,7 @@ public class Avatar : MonoBehaviour
         velX += Input.GetAxis("Horizontal") * frameAcc;
         velZ += Input.GetAxis("Vertical") * frameAcc;
 
-        CapAirVelocities();
+        //CapAirVelocities();
 
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, 1);
 

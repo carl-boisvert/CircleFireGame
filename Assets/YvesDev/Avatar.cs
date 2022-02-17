@@ -255,9 +255,13 @@ public class Avatar : MonoBehaviour
 
     private void Jump()
     {
+        /*
         float frameAcc = airAcceleration * Time.deltaTime;
         velX += Input.GetAxis("Horizontal") * frameAcc;
         velZ += Input.GetAxis("Vertical") * frameAcc;
+        */
+        velX = Input.GetAxis("Horizontal");
+        velZ = Input.GetAxis("Vertical");
 
         CapAirVelocities();
 

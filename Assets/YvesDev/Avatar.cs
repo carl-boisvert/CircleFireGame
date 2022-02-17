@@ -276,7 +276,7 @@ public class Avatar : MonoBehaviour
     private void StartHover()
     {
         StateMachine = "Hover";
-        //audioPlayer.PlayAudioClip(0);
+        audioPlayer.PlayAudioClip(0);
     }
 
     private void Hover()
@@ -300,7 +300,7 @@ public class Avatar : MonoBehaviour
     private void StopHover()
     {
         StateMachine = "Jump";
-        //audioPlayer.StopAudio();
+        audioPlayer.StopAudio();
     }
 
     private void StartAirBoost()

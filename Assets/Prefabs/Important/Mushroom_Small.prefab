@@ -289,7 +289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bounceforce: 30
   _audioPlayer: {fileID: 7876929401515313454}
-  _audioIndexRange: {x: 0, y: 1}
 --- !u!114 &7876929401515313454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,5 +303,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 3609433171942509214}
   audioClips:
-  - {fileID: 8300000, guid: 23fa063bc0579764cbbfcb5dc948a485, type: 3}
-  - {fileID: 8300000, guid: 0cd96624dd8558a4a964b8c374ccd1e8, type: 3}
+  - {fileID: 8300000, guid: ad5f3ca7ff35f9943afc731002b1088b, type: 3}

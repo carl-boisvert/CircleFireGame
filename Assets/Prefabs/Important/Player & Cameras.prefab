@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 3475032538242301296}
   - component: {fileID: 3475032538242301297}
   - component: {fileID: 3475032538242301295}
+  - component: {fileID: 852177658217079646}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Player
@@ -135,9 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a336d360922de43952a6767a9dd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 3475032538242301295}
+  animator: {fileID: 852177658217079646}
   cam: {fileID: 7735100628572704846}
   GrappleMax: {fileID: 7735100628917603410}
-  audioPlayer: {fileID: 0}
   jumpKey: 32
   hoverKey: 304
   airBoostKey: 32
@@ -303,6 +305,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b3e9a34d88067044b9cacf77b3649288, type: 3}
   - {fileID: 8300000, guid: bd6eb21770a7baf4eaa33bb7bd418e50, type: 3}
   - {fileID: 8300000, guid: e75f26f0a160566408d091db44816ab8, type: 3}
+--- !u!95 &852177658217079646
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708555054659617406}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7903270963045446729
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +365,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5829181182266551288, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7772585
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -451,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148821, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7772585
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -479,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031379, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7772585
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124497, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Damping
@@ -567,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7772585
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_XAxis.m_InvertInput

@@ -8,9 +8,11 @@ public class Avatar : MonoBehaviour
 
     [Header("Other GameObjects")]
     CharacterController cc;
+    public Audio_AudioPlayer audioPlayer;
+    public Animator animator;
+
     public Transform cam;
     public Transform GrappleMax;
-    public Audio_AudioPlayer audioPlayer;
 
     [Header("Inputs")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;

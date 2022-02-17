@@ -8,9 +8,11 @@ public class Avatar : MonoBehaviour
 
     [Header("Other GameObjects")]
     CharacterController cc;
+    public Audio_AudioPlayer audioPlayer;
+    public Animator animator;
+
     public Transform cam;
     public Transform GrappleMax;
-    public Audio_AudioPlayer audioPlayer;
 
     [Header("Inputs")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
@@ -32,6 +34,7 @@ public class Avatar : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpSpeed = 5f;
     [Range(0f, 1f)] public float jumpCancelSpeedMult = 0.5f;
+    [Range(0f, 2f)] public float jumpSpeedMult = 1;
     float jumpCancelSpeed;
     string StateMachine = "none";
 
@@ -253,13 +256,17 @@ public class Avatar : MonoBehaviour
 
     private void Jump()
     {
+        /*
         float frameAcc = airAcceleration * Time.deltaTime;
         velX += Input.GetAxis("Horizontal") * frameAcc;
         velZ += Input.GetAxis("Vertical") * frameAcc;
+        */
+        velX = Input.GetAxis("Horizontal");
+        velZ = Input.GetAxis("Vertical");
 
         CapAirVelocities();
 
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, 1);
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, jumpSpeedMult);
 
         if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 
@@ -274,7 +281,7 @@ public class Avatar : MonoBehaviour
     private void StartHover()
     {
         StateMachine = "Hover";
-        //audioPlayer.PlayAudioClip(0);
+        audioPlayer.PlayAudioClip(0);
     }
 
     private void Hover()
@@ -286,7 +293,7 @@ public class Avatar : MonoBehaviour
         velX += Input.GetAxis("Horizontal") * frameAcc;
         velZ += Input.GetAxis("Vertical") * frameAcc;
 
-        CapAirVelocities();
+        //CapAirVelocities();
 
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, 1);
 
@@ -298,7 +305,7 @@ public class Avatar : MonoBehaviour
     private void StopHover()
     {
         StateMachine = "Jump";
-        //audioPlayer.StopAudio();
+        audioPlayer.StopAudio();
     }
 
     private void StartAirBoost()

@@ -11,6 +11,7 @@ TagManager:
   - drone
   - systems
   - pause-menu
+  - audio-environment
   layers:
   - Default
   - TransparentFX

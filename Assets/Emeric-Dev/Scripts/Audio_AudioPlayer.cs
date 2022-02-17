@@ -16,6 +16,11 @@ public class Audio_AudioPlayer : MonoBehaviour
             audioSource.PlayOneShot(audioClips[index]);
         }
     }
+    public void PlayAudioClip(int index, float volume){
+        if (CanPlayClip(index)){
+            audioSource.PlayOneShot(audioClips[index], volume);
+        }
+    }
 
     public void PlayAudioClipRandomFromRange(int startRange, int endRange){
         if (CanPlayClip(startRange, endRange)){
@@ -23,11 +28,24 @@ public class Audio_AudioPlayer : MonoBehaviour
             audioSource.PlayOneShot(audioClips[randomIndex]);
         }
     }
+    public void PlayAudioClipRandomFromRange(int startRange, int endRange, float volume){
+        if (CanPlayClip(startRange, endRange)){
+            int randomIndex = Random.Range(startRange, endRange);
+            audioSource.PlayOneShot(audioClips[randomIndex], volume);
+        }
+    }
 
     public void PlayAudioClipsFromRange(int startRange, int endRange){
         if (CanPlayClip(startRange, endRange)){
             for (int i = startRange; i <= endRange; i++){
                 audioSource.PlayOneShot(audioClips[i]);
+            }
+        }
+    }
+    public void PlayAudioClipsFromRange(int startRange, int endRange, float volume){
+        if (CanPlayClip(startRange, endRange)){
+            for (int i = startRange; i <= endRange; i++){
+                audioSource.PlayOneShot(audioClips[i], volume);
             }
         }
     }

@@ -34,6 +34,7 @@ public class Avatar : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpSpeed = 5f;
     [Range(0f, 1f)] public float jumpCancelSpeedMult = 0.5f;
+    [Range(0f, 2f)] public float jumpSpeedMult = 1;
     float jumpCancelSpeed;
     string StateMachine = "none";
 
@@ -265,7 +266,7 @@ public class Avatar : MonoBehaviour
 
         CapAirVelocities();
 
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, 1);
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) HorizontalMove(true, jumpSpeedMult);
 
         if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 

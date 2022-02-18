@@ -252,6 +252,7 @@ public class Avatar : MonoBehaviour
     {
         StateMachine = "Jump";
         velY = jumpSpeed;
+        audioPlayer.PlayAudioClipRandomFromRange(10,14);
     }
 
     private void Jump()
@@ -271,17 +272,20 @@ public class Avatar : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 
         if (velY < 0 && cc.isGrounded) StopJump();
+            
     }
 
     private void StopJump()
     {
+
+        audioPlayer.PlayAudioClipRandomFromRange(15, 19);
         StateMachine = "none";
     }
 
     private void StartHover()
     {
         StateMachine = "Hover";
-        audioPlayer.PlayAudioClip(0);
+        audioPlayer.PlayAudioClip(20);
     }
 
     private void Hover()
@@ -316,7 +320,7 @@ public class Avatar : MonoBehaviour
         FuelStabilizer();
         StopAirBoost();
 
-        //audioPlayer.PlayAudioClip(1);
+        audioPlayer.PlayAudioClipRandomFromRange(21,26);
     }
 
     private void AirBoost()

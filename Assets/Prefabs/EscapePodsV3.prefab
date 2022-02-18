@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9105305068565318957}
   - component: {fileID: 5328691992751325832}
   - component: {fileID: 7932992248931268162}
+  - component: {fileID: 1021902443287161754}
   m_Layer: 0
   m_Name: EscapePodsV3
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1021902443287161754
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8437311500486842263}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2762472744948416827, guid: 80a8ade3e2afc8549b34555a2bd884d6, type: 3}

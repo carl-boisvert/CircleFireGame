@@ -278,6 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01279e8abfe7d0647bb9db0d94bad90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  turnSmoothTime: 0.1
   gunTip: {fileID: 7446777864230761221}
 --- !u!1 &1878892656769803695
 GameObject:
@@ -428,7 +430,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a336d360922de43952a6767a9dd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 0}
+  animator: {fileID: 0}
   cam: {fileID: 0}
+  GrappleMax: {fileID: 0}
+  jumpKey: 32
+  hoverKey: 304
+  airBoostKey: 32
   gravity: -5
   termVelY: -20
   moveSpeed: 3
@@ -436,6 +444,7 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   jumpSpeed: 5
   jumpCancelSpeedMult: 0.5
+  jumpSpeedMult: 1
   maxFuel: 100
   fuelRecovery: 1
   hoverCost: 10
@@ -444,11 +453,14 @@ MonoBehaviour:
   airBoostUnlocked: 1
   airBoostSpeedMult: 1.5
   hoverAcceleration: 5.5
+  maxHoverSpeed: 1
   whatsIsGrappleable:
     serializedVersion: 2
     m_Bits: 8
   drone: {fileID: 1031866860260157804}
+  grappleUnlocked: 0
   grappleSpeed: 6
+  grapplingCapsuleRadius: 5
 --- !u!1 &7989574390646684671
 GameObject:
   m_ObjectHideFlags: 0

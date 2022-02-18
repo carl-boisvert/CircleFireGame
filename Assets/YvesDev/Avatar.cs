@@ -228,6 +228,7 @@ public class Avatar : MonoBehaviour
     private void StartWalk()
     {
         StateMachine = "Walk";
+        animator.SetBool("Walking", true);
     }
 
     private void Walk()
@@ -246,13 +247,17 @@ public class Avatar : MonoBehaviour
     private void StopWalk()
     {
         StateMachine = "none";
+        animator.SetBool("Walking", false);
     }
 
     private void StartJump()
     {
         StateMachine = "Jump";
         velY = jumpSpeed;
+
         audioPlayer.PlayAudioClipRandomFromRange(10,14);
+        animator.SetBool("Walking", false);
+        animator.SetBool("Jumping", true);
     }
 
     private void Jump()
@@ -277,7 +282,7 @@ public class Avatar : MonoBehaviour
 
     private void StopJump()
     {
-
+        animator.SetBool("Jumping", false);
         audioPlayer.PlayAudioClipRandomFromRange(15, 19);
         StateMachine = "none";
     }

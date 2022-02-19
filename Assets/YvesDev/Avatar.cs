@@ -62,6 +62,12 @@ public class Avatar : MonoBehaviour
     [SerializeField] float grappleSpeed = 6f;
     [SerializeField] float grapplingCapsuleRadius = 5f;
 
+    [Header("Grappling Drone")]
+    [Range(0f, 1f)] public float jumpVolume = 1f;
+    [Range(0f, 1f)] public float hoverVolume = 1f;
+    [Range(0f, 1f)] public float airBoostVolume = 1f;
+    [Range(0f, 1f)] public float grappleVolume = 1f;
+
     #endregion
 
     // Start is called before the first frame update
@@ -255,7 +261,7 @@ public class Avatar : MonoBehaviour
         StateMachine = "Jump";
         velY = jumpSpeed;
 
-        audioPlayer.PlayAudioClipRandomFromRange(0,4);
+        audioPlayer.PlayAudioClipRandomFromRange(0, 4, jumpVolume);
         animator.SetBool("Walking", false);
         animator.SetBool("Jumping", true);
     }
@@ -277,20 +283,20 @@ public class Avatar : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) && velY > jumpCancelSpeed) velY = jumpCancelSpeed;
 
         if (velY < 0 && cc.isGrounded) StopJump();
-            
+
     }
 
     private void StopJump()
     {
         animator.SetBool("Jumping", false);
-        audioPlayer.PlayAudioClipRandomFromRange(5, 9);
+        audioPlayer.PlayAudioClipRandomFromRange(5, 9, jumpVolume);
         StateMachine = "none";
     }
 
     private void StartHover()
     {
         StateMachine = "Hover";
-        audioPlayer.PlayAudioClip(10);
+        audioPlayer.PlayAudioClip(10, hoverVolume);
     }
 
     private void Hover()
@@ -325,7 +331,7 @@ public class Avatar : MonoBehaviour
         FuelStabilizer();
         StopAirBoost();
 
-        audioPlayer.PlayAudioClipRandomFromRange(11,16);
+        audioPlayer.PlayAudioClipRandomFromRange(11, 16, airBoostVolume);
     }
 
     private void AirBoost()
@@ -346,8 +352,8 @@ public class Avatar : MonoBehaviour
         StateMachine = "Grapple";
         drone.SendMessage("StartGrapple", grappleTo);
 
-        audioPlayer.PlayAudioClip(17);
-        audioPlayer.PlayAudioClip(18);
+        audioPlayer.PlayAudioClip(17, grappleVolume);
+        audioPlayer.PlayAudioClip(18, grappleVolume);
     }
 
     private void Grapple()
@@ -378,7 +384,7 @@ public class Avatar : MonoBehaviour
         velY = 0;
 
         audioPlayer.StopAudio();
-        audioPlayer.PlayAudioClip(19);
+        audioPlayer.PlayAudioClip(19, grappleVolume);
 
         StateMachine = "Jump";
     }

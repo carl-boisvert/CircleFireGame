@@ -10,6 +10,11 @@ public class Audio_AudioPlayer : MonoBehaviour
 
     #region Public Functions
 
+    public void PlayNothing()
+    {
+
+    }
+
     public void PlayAudioClip(int index){
 
         if (CanPlayClip(index)){

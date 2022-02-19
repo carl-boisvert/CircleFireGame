@@ -64,6 +64,7 @@ public class Avatar : MonoBehaviour
 
     [Header("Grappling Drone")]
     [Range(0f, 1f)] public float jumpVolume = 1f;
+    [Range(0f, 1f)] public float landVolume = 1f;
     [Range(0f, 1f)] public float hoverVolume = 1f;
     [Range(0f, 1f)] public float airBoostVolume = 1f;
     [Range(0f, 1f)] public float grappleVolume = 1f;
@@ -289,7 +290,7 @@ public class Avatar : MonoBehaviour
     private void StopJump()
     {
         animator.SetBool("Jumping", false);
-        audioPlayer.PlayAudioClipRandomFromRange(5, 9, jumpVolume);
+        audioPlayer.PlayAudioClipRandomFromRange(5, 9, landVolume);
         StateMachine = "none";
     }
 

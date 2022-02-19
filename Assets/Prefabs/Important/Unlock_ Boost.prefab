@@ -63,89 +63,90 @@ MonoBehaviour:
   player: {fileID: 0}
   jetpack: {fileID: 0}
   drone: {fileID: 0}
---- !u!1001 &1430891180711198194
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5488274961261902762}
-    m_Modifications:
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.279
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5755199123781151706, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-      propertyPath: m_Name
-      value: Jetpack
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
---- !u!4 &6291185916764130450 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4941930592560034144, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-  m_PrefabInstance: {fileID: 1430891180711198194}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6630733440110745128 stripped
+--- !u!1 &6630733440110745128
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5755199123781151706, guid: e9c6ef8f87c9217478b3079f71abcf48, type: 3}
-  m_PrefabInstance: {fileID: 1430891180711198194}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6291185916764130450}
+  - component: {fileID: 6980882712054039351}
+  - component: {fileID: 5117747922937935869}
+  - component: {fileID: 6186401048406052388}
+  m_Layer: 0
+  m_Name: Jetpack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6291185916764130450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630733440110745128}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.64, z: -0.279}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5488274961261902762}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6980882712054039351
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630733440110745128}
+  m_Mesh: {fileID: 6317164471255398929, guid: 42aeb713ec2757d4b9f7e9107b63f4c6, type: 3}
+--- !u!23 &5117747922937935869
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630733440110745128}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3de711d2775e92044857c03b18f84a10, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6186401048406052388
 MonoBehaviour:
   m_ObjectHideFlags: 0

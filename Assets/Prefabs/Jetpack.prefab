@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6115447855511685647}
   m_Layer: 0
   m_Name: Jetpack
-  m_TagString: Untagged
+  m_TagString: jetpack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5755199123781151706}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.64, z: -0.279}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61,8 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4d7d51da093eb84ca9f462d14b38f33, type: 2}
-  - {fileID: 2100000, guid: 1bc68527abaefd140bbdeac33b2723ea, type: 2}
+  - {fileID: 2100000, guid: 3de711d2775e92044857c03b18f84a10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

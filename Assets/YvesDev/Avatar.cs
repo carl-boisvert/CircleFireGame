@@ -255,7 +255,7 @@ public class Avatar : MonoBehaviour
         StateMachine = "Jump";
         velY = jumpSpeed;
 
-        audioPlayer.PlayAudioClipRandomFromRange(10,14);
+        audioPlayer.PlayAudioClipRandomFromRange(0,4);
         animator.SetBool("Walking", false);
         animator.SetBool("Jumping", true);
     }
@@ -283,14 +283,14 @@ public class Avatar : MonoBehaviour
     private void StopJump()
     {
         animator.SetBool("Jumping", false);
-        audioPlayer.PlayAudioClipRandomFromRange(15, 19);
+        audioPlayer.PlayAudioClipRandomFromRange(5, 9);
         StateMachine = "none";
     }
 
     private void StartHover()
     {
         StateMachine = "Hover";
-        audioPlayer.PlayAudioClip(20);
+        audioPlayer.PlayAudioClip(10);
     }
 
     private void Hover()
@@ -325,7 +325,7 @@ public class Avatar : MonoBehaviour
         FuelStabilizer();
         StopAirBoost();
 
-        audioPlayer.PlayAudioClipRandomFromRange(21,26);
+        audioPlayer.PlayAudioClipRandomFromRange(11,16);
     }
 
     private void AirBoost()
@@ -345,6 +345,9 @@ public class Avatar : MonoBehaviour
 
         StateMachine = "Grapple";
         drone.SendMessage("StartGrapple", grappleTo);
+
+        audioPlayer.PlayAudioClip(17);
+        audioPlayer.PlayAudioClip(18);
     }
 
     private void Grapple()
@@ -373,6 +376,9 @@ public class Avatar : MonoBehaviour
         velX = 0;
         velZ = 0;
         velY = 0;
+
+        audioPlayer.StopAudio();
+        audioPlayer.PlayAudioClip(19);
 
         StateMachine = "Jump";
     }

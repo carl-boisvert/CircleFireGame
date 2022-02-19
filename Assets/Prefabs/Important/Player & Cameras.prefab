@@ -134,6 +134,7 @@ MonoBehaviour:
   grappleSpeed: 15
   grapplingCapsuleRadius: 5
   jumpVolume: 1
+  landVolume: 1
   hoverVolume: 0.4
   airBoostVolume: 1
   grappleVolume: 0.15
@@ -666,6 +667,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 7735100628572704846}
+    - target: {fileID: 238308712217347519, guid: b8a19d61941c53742b58343507e5d20a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 98f6347351c2be04a8e0e270be115aa7, type: 2}
     - target: {fileID: 4664515936234336327, guid: b8a19d61941c53742b58343507e5d20a, type: 3}
       propertyPath: m_RootOrder
       value: 0

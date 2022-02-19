@@ -10,11 +10,6 @@ public class Audio_AudioPlayer : MonoBehaviour
 
     #region Public Functions
 
-    public void PlayNothing()
-    {
-
-    }
-
     public void PlayAudioClip(int index){
 
         if (CanPlayClip(index)){
@@ -58,6 +53,10 @@ public class Audio_AudioPlayer : MonoBehaviour
     public void PlayRandomClip()
     {
         PlayAudioClipRandomFromRange(0, (audioClips.Length - 1));
+    }
+
+    public void PlayRandomClipAtVolume(float volume){
+        PlayAudioClipRandomFromRange(0, (audioClips.Length - 1), volume);
     }
 
     public void StopAudio()

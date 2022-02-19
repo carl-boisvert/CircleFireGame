@@ -134,9 +134,9 @@ MonoBehaviour:
   grappleSpeed: 15
   grapplingCapsuleRadius: 5
   jumpVolume: 1
-  hoverVolume: 1
+  hoverVolume: 0.4
   airBoostVolume: 1
-  grappleVolume: 0.2
+  grappleVolume: 0.15
 --- !u!114 &3708555054659617400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1828adc509f1a01419a8e75b04fee7c7, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -322,11 +322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000021490776
+      value: 0.0000000021490785
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 8.599114e-11
+      value: -8.599117e-11
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182615547369, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_FollowOffset.y

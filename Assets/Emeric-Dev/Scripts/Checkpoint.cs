@@ -21,6 +21,8 @@ public class Checkpoint : MonoBehaviour
         if (_myCollider && DEBUG){
             Gizmos.color = Color.yellow;
             Gizmos.DrawCube(transform.position, _myCollider.size);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(spawnPoint.position, 1f);
         }
     }
 }

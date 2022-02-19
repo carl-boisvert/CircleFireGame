@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1529407312234971824}
   - component: {fileID: 1529407312234971827}
   - component: {fileID: 1529407312234971826}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CollisionPlantehaute
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1524892687716897831}
   - component: {fileID: 1720941402715331955}
   - component: {fileID: 1575428158806222031}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

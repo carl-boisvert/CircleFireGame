@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3118188886577525556}
   - component: {fileID: 2418448747114596039}
   - component: {fileID: 4911701940302328170}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformeFeuille
   m_TagString: platform-crumbling
   m_Icon: {fileID: 0}

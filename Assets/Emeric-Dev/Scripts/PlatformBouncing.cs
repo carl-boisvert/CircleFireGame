@@ -17,8 +17,9 @@ public class PlatformBouncing : Platform
     
     public override void OnPlayerLand()
     {
-        if (player.TryGetComponent<Avatar>(out Avatar playerAvatar)){
-            playerAvatar.SetVelocityY(_bounceforce);
+        if (player.GetVelocityY() < 0){
+            if (player.StateMachine == "Jump")
+            player.SetVelocityY(_bounceforce);
             _audioPlayer.PlayAudioClip(0);
         }
     }

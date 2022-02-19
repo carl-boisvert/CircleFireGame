@@ -89,7 +89,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1828adc509f1a01419a8e75b04fee7c7, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 8391214633204077645}
   - component: {fileID: 1553086989194919930}
   - component: {fileID: 7876929401515313454}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mushroom_Small
   m_TagString: platform-bouncing
   m_Icon: {fileID: 0}

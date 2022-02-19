@@ -37,6 +37,11 @@ public class PlatformMoving : Platform
         transform.position = Vector3.MoveTowards(transform.position, targetPos, _moveSpeed * Time.deltaTime);
     }
 
+    public override void OnPlayerLand()
+    {
+        player.transform.SetParent(this.transform);
+    }
+
     void ChangeTargetNode(int currentTarget){
         switch (pathingType) {
             case PathingType.loop: _targetNodeIndex = NextNodeLoop(currentTarget); break;

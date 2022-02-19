@@ -11,6 +11,7 @@ public class AvatarPlatformCheck : MonoBehaviour
     [SerializeField] Avatar player;
     [SerializeField] Vector3 checkBoxSize = Vector3.one;
     [SerializeField] float rayHeight = 0;
+    [SerializeField] LayerMask layersToHit;
     [SerializeField] bool DEBUG = false;
 
     void Awake()
@@ -19,11 +20,11 @@ public class AvatarPlatformCheck : MonoBehaviour
         if (player == null) { this.gameObject.TryGetComponent<Avatar>(out player); }
     }
 
-    void Update() 
+    void FixedUpdate() 
     {
         Vector3 rayPoint = new Vector3(transform.position.x, transform.position.y - (characterController.height / 2) + rayHeight, transform.position.z);
         RaycastHit hit;
-        if (Physics.BoxCast(rayPoint, checkBoxSize, Vector3.down, out hit, Quaternion.identity, rayLength)){
+        if (Physics.BoxCast(rayPoint, checkBoxSize, Vector3.down, out hit, Quaternion.identity, rayLength, layersToHit, QueryTriggerInteraction.Ignore)){
             if (hit.transform.tag.Contains("platform")){
                 if (hit.transform.TryGetComponent<Platform>(out Platform platform)){
                     platform.OnPlayerLand();

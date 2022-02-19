@@ -36,7 +36,7 @@ public class Avatar : MonoBehaviour
     [Range(0f, 1f)] public float jumpCancelSpeedMult = 0.5f;
     [Range(0f, 2f)] public float jumpSpeedMult = 1;
     float jumpCancelSpeed;
-    string StateMachine = "none";
+    public string StateMachine = "none";
 
     [Header("Fuel")]
     [SerializeField] float maxFuel = 100;

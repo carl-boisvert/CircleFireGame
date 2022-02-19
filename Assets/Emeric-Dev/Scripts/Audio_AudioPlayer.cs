@@ -50,6 +50,11 @@ public class Audio_AudioPlayer : MonoBehaviour
         }
     }
 
+    public void PlayRandomClip()
+    {
+
+    }
+
     public void StopAudio()
     {
         audioSource.Stop();

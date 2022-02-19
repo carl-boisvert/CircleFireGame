@@ -369,7 +369,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5829181182266551288, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7777778
+      value: 2.4125412
       objectReference: {fileID: 0}
     - target: {fileID: 5829181182266551295, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -477,7 +477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183322148821, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7777778
+      value: 2.4125412
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -497,15 +497,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017156292
+      value: -0.000000017156285
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000013119965
+      value: 0.000000001311996
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031379, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7777778
+      value: 2.4125412
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124497, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Damping
@@ -593,7 +593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7777778
+      value: 2.4125412
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183718124499, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_XAxis.m_InvertInput
@@ -918,7 +918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4664515936234336327, guid: b8a19d61941c53742b58343507e5d20a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.97
       objectReference: {fileID: 0}
     - target: {fileID: 4664515936234336327, guid: b8a19d61941c53742b58343507e5d20a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -963,6 +963,35 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1611053173103438397, guid: b8a19d61941c53742b58343507e5d20a, type: 3}
   m_PrefabInstance: {fileID: 4355033073720594913}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8610970083103390492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5471979286646041341, guid: b8a19d61941c53742b58343507e5d20a, type: 3}
+  m_PrefabInstance: {fileID: 4355033073720594913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6863898240025323620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610970083103390492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9ad8e010393c44f8f7d8caccf3062e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 3475032538242301296}
+  audioClips:
+  - {fileID: 8300000, guid: f6dca4f03d1252443ab072e791cf2a7d, type: 3}
+  - {fileID: 8300000, guid: baddd0825f6e328429e3453f94fe0b3f, type: 3}
+  - {fileID: 8300000, guid: a49a95abe616ad443b0488bbc028104d, type: 3}
+  - {fileID: 8300000, guid: a8f70a5d259bfc84a97007b34fe6e9c3, type: 3}
+  - {fileID: 8300000, guid: fd7156559b90bf74bbb7fea17e580b3a, type: 3}
+  - {fileID: 8300000, guid: 13d0e92c68442af4abd861ac9c326472, type: 3}
+  - {fileID: 8300000, guid: c13f35949841a4b4e82015ede82c0540, type: 3}
+  - {fileID: 8300000, guid: 568db0ee8110dd74197a81e92c40a5b9, type: 3}
+  - {fileID: 8300000, guid: 20ca1956b9cd1124c8407bf4bb8f855e, type: 3}
+  - {fileID: 8300000, guid: 64439bae219e3da468eea90a49999744, type: 3}
 --- !u!4 &8992455931045667238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4664515936234336327, guid: b8a19d61941c53742b58343507e5d20a, type: 3}

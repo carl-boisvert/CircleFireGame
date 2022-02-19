@@ -353,6 +353,8 @@ public class Avatar : MonoBehaviour
         StateMachine = "Grapple";
         drone.SendMessage("StartGrapple", grappleTo);
 
+        animator.SetBool("Walking", false);
+
         audioPlayer.PlayAudioClip(17, grappleVolume);
         audioPlayer.PlayAudioClip(18, grappleVolume);
     }

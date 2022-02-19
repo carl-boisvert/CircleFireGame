@@ -90,11 +90,14 @@ public class Avatar : MonoBehaviour
     void Update()
     {
         if (StateMachine != "Grapple") Gravity();
+        
 
         if (grappleUnlocked) CheckForGrapplePoints();
 
         //Movement
         RunState();
+
+        //if (StateMachine != "Grapple") Gravity();
 
         movement.y = velY;
 
@@ -106,9 +109,13 @@ public class Avatar : MonoBehaviour
     {
         if (!cc.isGrounded)
         {
+
             if (velY > termVelY) velY += gravity * Time.deltaTime;
         }
-        else velY = gravity * 0.5f;
+        else if (velY < 0)
+        {
+            velY = gravity * 0.5f;
+        }
     }
 
     private float Orientation(bool rotate)
@@ -225,6 +232,8 @@ public class Avatar : MonoBehaviour
         movement *= moveSpeed;
 
         FuelRecovery();
+
+
     }
 
     private void StopIdle()
@@ -265,6 +274,7 @@ public class Avatar : MonoBehaviour
         audioPlayer.PlayAudioClipRandomFromRange(0, 4, jumpVolume);
         animator.SetBool("Walking", false);
         animator.SetBool("Jumping", true);
+
     }
 
     private void Jump()

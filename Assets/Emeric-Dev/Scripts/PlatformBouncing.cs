@@ -9,8 +9,9 @@ public class PlatformBouncing : Platform
     [Header("Audio")]
     [SerializeField] Audio_AudioPlayer _audioPlayer;
     
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (_audioPlayer == null) { this.gameObject.TryGetComponent<Audio_AudioPlayer>(out _audioPlayer); }
     }
     

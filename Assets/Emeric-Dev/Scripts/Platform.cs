@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     protected static Avatar player;
-    void Awake()
+    protected virtual void Awake()
     {
         if (player == null) { player = FindObjectOfType<Avatar>(); }
     }

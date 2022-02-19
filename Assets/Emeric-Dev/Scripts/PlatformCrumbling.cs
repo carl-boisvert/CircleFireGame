@@ -13,15 +13,17 @@ public class PlatformCrumbling : Platform
     [SerializeField] float crumbleSpeed = 1f;
     bool recharging = false;
     
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         animator.speed = crumbleSpeed;
     }
 
     public override void OnPlayerLand()
     {
-        if (!recharging)
+        if ((!recharging) && (player.GetVelocityY() <= 0)){
             StartCoroutine(Crumble());
+        }
     }
 
     IEnumerator Crumble(){
@@ -33,6 +35,9 @@ public class PlatformCrumbling : Platform
         yield return new WaitForSeconds(rechargeDelay);
 
         animator.SetTrigger("recharge");
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
         recharging = false;
     }
 }

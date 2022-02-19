@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 6a3fe93854403554b936fe32b43708e3
   - enabled: 1
-    path: Assets/Emeric-Dev/EmericDEV.unity
-    guid: 28431a289efa30447b3e5f893a0a18bf
+    path: Assets/Scenes/level-0.unity
+    guid: e450323a4075fda4ab2c1c110b18b8d6
   m_configObjects: {}

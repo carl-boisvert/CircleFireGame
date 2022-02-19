@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Scene_Manager : MonoBehaviour
 {
-    [SerializeField] GameObject fadeIn;
+    [SerializeField] GameObject fadeInPrefab;
+    [SerializeField] GameObject fadeOutObject;
     [SerializeField] float transitionDuration = 2f;
+
+    void Awake()
+    {
+        fadeOutObject.SetActive(true);
+    }
 
     public void ChangeToScene(string sceneName){
         Time.timeScale = 1f;
@@ -14,7 +20,7 @@ public class Scene_Manager : MonoBehaviour
     }
     
     IEnumerator ChangeToSceneCoroutine(string sceneName){
-        Instantiate(fadeIn, Vector3.zero, Quaternion.identity);
+        Instantiate(fadeInPrefab, Vector3.zero, Quaternion.identity);
         yield return new WaitForSeconds(transitionDuration);
 
         SceneManager.LoadScene(sceneName);

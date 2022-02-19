@@ -52,7 +52,7 @@ public class Audio_AudioPlayer : MonoBehaviour
 
     public void PlayRandomClip()
     {
-
+        PlayAudioClipRandomFromRange(0, (audioClips.Length - 1));
     }
 
     public void StopAudio()

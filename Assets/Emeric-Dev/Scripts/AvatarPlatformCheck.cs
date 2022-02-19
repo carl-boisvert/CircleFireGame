@@ -19,7 +19,7 @@ public class AvatarPlatformCheck : MonoBehaviour
         if (player == null) { this.gameObject.TryGetComponent<Avatar>(out player); }
     }
 
-    void Update()
+    void Update() 
     {
         Vector3 rayPoint = new Vector3(transform.position.x, transform.position.y - (characterController.height / 2) + rayHeight, transform.position.z);
         RaycastHit hit;

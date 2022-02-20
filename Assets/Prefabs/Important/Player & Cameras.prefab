@@ -122,8 +122,8 @@ MonoBehaviour:
   fuelRecovery: 100
   hoverCost: 50
   airBoostCost: 60
-  hoverUnlocked: 0
-  airBoostUnlocked: 0
+  hoverUnlocked: 1
+  airBoostUnlocked: 1
   airBoostSpeedMult: 1.2
   hoverAcceleration: 25
   maxHoverSpeed: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   drone: {fileID: 8414956442828867329}
-  grappleUnlocked: 0
+  grappleUnlocked: 1
   grappleSpeed: 15
   grapplingCapsuleRadius: 5
   GrappleMax: {fileID: 7735100628917603410}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG: 1
-  hoverRadius: 1
+  hoverRadius: 9.12
   grappleMaxPos: {fileID: 7735100628917603410}
   avatar: {fileID: 3708555054659617407}
 --- !u!82 &3475032538242301296
@@ -452,11 +452,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017156205
+      value: -0.000000017156292
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000000131199
+      value: 0.0000000013119965
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031379, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
@@ -642,11 +642,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000022141837
+      value: 0.0000000022141842
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 8.338621e-11
+      value: -8.3386256e-11
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -663,6 +663,18 @@ PrefabInstance:
     - target: {fileID: 7500249887376435694, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_UpdateMethod
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500249887729956336, guid: ee320303f889c7740927741bde010a6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500249887729956336, guid: ee320303f889c7740927741bde010a6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500249887729956336, guid: ee320303f889c7740927741bde010a6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 38.32
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7500249887376435682, guid: ee320303f889c7740927741bde010a6b, type: 3}

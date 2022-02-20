@@ -1,41 +1,11 @@
 fileFormatVersion: 2
-guid: 27cd841f2673d444ab813b7e733b1062
+guid: 02c462b3b5e19bf499bad7b20501d42a
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Body_Mat
-    second: {fileID: 2100000, guid: 3133252f054ea9c429539bce7a1c5d1d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eyeballs_Mat
-    second: {fileID: 2100000, guid: 8b9df38bcaa8cb74c9d25ab0c96c288b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Flesh_Mat
-    second: {fileID: 2100000, guid: 9cb12ab7dc3d90c4f90b664823d3181e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: e4d7d51da093eb84ca9f462d14b38f33, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ScaphandreParts_Mat
-    second: {fileID: 2100000, guid: e4d7d51da093eb84ca9f462d14b38f33, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Scaphandre_Mat
-    second: {fileID: 2100000, guid: 85783e5dfbc92984da5469c2cc4b239e, type: 2}
+  externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -121,7 +91,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

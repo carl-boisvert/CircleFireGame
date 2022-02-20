@@ -12,7 +12,6 @@ public class Avatar : MonoBehaviour
     public Animator animator;
 
     public Transform cam;
-    public Transform GrappleMax;
 
     [Header("Inputs")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
@@ -61,8 +60,9 @@ public class Avatar : MonoBehaviour
     [SerializeField] bool grappleUnlocked = false;
     [SerializeField] float grappleSpeed = 6f;
     [SerializeField] float grapplingCapsuleRadius = 5f;
+    public Transform GrappleMax;
 
-    [Header("Grappling Drone")]
+    [Header("Volume Settings")]
     [Range(0f, 1f)] public float jumpVolume = 1f;
     [Range(0f, 1f)] public float landVolume = 1f;
     [Range(0f, 1f)] public float hoverVolume = 1f;

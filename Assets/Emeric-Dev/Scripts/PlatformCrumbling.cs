@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlatformCrumbling : Platform
 {
     [SerializeField] Animator animator;
+    [SerializeField] Audio_AudioPlayer audioPlayer;
     [Tooltip("The delay before the leaf starts crumbling once the player has landed on it.")]
     [SerializeField] float crumbleDelay = 0.5f;
     [Tooltip("The delay before the leaf resets to its normal position.")]
@@ -23,6 +24,7 @@ public class PlatformCrumbling : Platform
     {
         if ((!recharging) && (player.GetVelocityY() <= 0)){
             StartCoroutine(Crumble());
+            audioPlayer.PlayAudioClip(0);
         }
     }
 
@@ -39,5 +41,6 @@ public class PlatformCrumbling : Platform
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         recharging = false;
+        audioPlayer.StopAudio();
     }
 }

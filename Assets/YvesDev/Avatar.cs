@@ -237,8 +237,6 @@ public class Avatar : MonoBehaviour
         movement *= moveSpeed;
 
         FuelRecovery();
-
-
     }
 
     private void StopIdle()
@@ -380,9 +378,9 @@ public class Avatar : MonoBehaviour
         Vector3 direction = grappleTo - transform.position;
         if (direction.magnitude > 1f)
         {
-            direction.Normalize();
+            //direction.Normalize();
             movement = direction.normalized * grappleSpeed;
-            velY = direction.y;
+            velY = direction.y * grappleSpeed * Time.deltaTime;
         }
         else
         {

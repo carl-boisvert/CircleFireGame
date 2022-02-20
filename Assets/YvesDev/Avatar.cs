@@ -57,6 +57,7 @@ public class Avatar : MonoBehaviour
     Vector3 grappleTo;
     Collider grappleCollider;
     public GameObject drone;
+    public ParticleSystem grappleEffect;
     [SerializeField] bool grappleUnlocked = false;
     [SerializeField] float grappleSpeed = 6f;
     [SerializeField] float grapplingCapsuleRadius = 5f;
@@ -90,9 +91,9 @@ public class Avatar : MonoBehaviour
     void Update()
     {
         if (StateMachine != "Grapple") Gravity();
-        
 
-        if (grappleUnlocked) CheckForGrapplePoints();
+
+        if (grappleUnlocked && StateMachine != "Grapple") CheckForGrapplePoints();
 
         //Movement
         RunState();
@@ -172,6 +173,7 @@ public class Avatar : MonoBehaviour
         if (hitColliders.Length <= 0)
         {
             grappleCollider = null;
+            grappleEffect.gameObject.SetActive(false);
             return;
         }
 
@@ -189,6 +191,9 @@ public class Avatar : MonoBehaviour
                 grappleCollider = hitCollider;
                 grappleTo = closestPoint;
             }
+
+            grappleEffect.transform.position = grappleTo;
+            grappleEffect.gameObject.SetActive(true);
         }
     }
 

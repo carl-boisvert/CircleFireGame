@@ -1969,7 +1969,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f9fd603dbce11d4bbdb3582c470c99f, type: 2}
+  - {fileID: 2100000, guid: 85783e5dfbc92984da5469c2cc4b239e, type: 2}
   - {fileID: 2100000, guid: e4d7d51da093eb84ca9f462d14b38f33, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -2323,6 +2323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1459271079850670107}
     m_Modifications:
+    - target: {fileID: 4158808748063709984, guid: 4d0f6d470f4f1c1468afc9e99edda7c0, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8613498011981152946, guid: 4d0f6d470f4f1c1468afc9e99edda7c0, type: 3}
       propertyPath: m_Name
       value: Drone (1)

@@ -90,9 +90,9 @@ public class Avatar : MonoBehaviour
     void Update()
     {
         if (StateMachine != "Grapple") Gravity();
-        
 
-        if (grappleUnlocked) CheckForGrapplePoints();
+
+        if (grappleUnlocked && StateMachine != "Grapple") CheckForGrapplePoints();
 
         //Movement
         RunState();

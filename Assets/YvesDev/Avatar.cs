@@ -447,6 +447,11 @@ public class Avatar : MonoBehaviour
         grappleUnlocked = newV;
     }
 
+    public bool GetGrappleUnlocked()
+    {
+        return grappleUnlocked;
+    }
+
     public void SetMoveSpeed(float newSpeed)
     {
         moveSpeed = newSpeed;

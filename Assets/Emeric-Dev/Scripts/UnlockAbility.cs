@@ -15,6 +15,11 @@ public class UnlockAbility : MonoBehaviour
     [SerializeField] GameObject jetpack;
     [SerializeField] GameObject drone;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip unlockAudioClip;
+    [SerializeField] float volume = 1f;
+
     void Awake()
     {
         if (player == null) { GameObject.FindGameObjectWithTag("Player").TryGetComponent<Avatar>(out player); }
@@ -38,6 +43,7 @@ public class UnlockAbility : MonoBehaviour
                 default: break;
             }
 
+            if (audioSource) { audioSource.PlayOneShot(unlockAudioClip, volume); }
             Destroy(this.gameObject);
             //StartCoroutine(IDestroyThisObj());
         }

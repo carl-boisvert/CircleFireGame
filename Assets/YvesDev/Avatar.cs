@@ -60,6 +60,7 @@ public class Avatar : MonoBehaviour
     public ParticleSystem grappleEffect;
     [SerializeField] bool grappleUnlocked = false;
     [SerializeField] float grappleSpeed = 6f;
+    [SerializeField] float grappleYSpeedMofidier = 5f;
     [SerializeField] float grapplingCapsuleRadius = 5f;
     public Transform GrappleMax;
 
@@ -380,7 +381,7 @@ public class Avatar : MonoBehaviour
         {
             //direction.Normalize();
             movement = direction.normalized * grappleSpeed;
-            velY = direction.y * grappleSpeed * Time.deltaTime;
+            velY = direction.y * (grappleSpeed * grappleYSpeedMofidier) * Time.deltaTime;
         }
         else
         {

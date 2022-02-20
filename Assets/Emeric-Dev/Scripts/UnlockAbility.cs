@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,7 @@ public class UnlockAbility : MonoBehaviour
             }
 
             Destroy(this.gameObject);
+            //StartCoroutine(IDestroyThisObj());
         }
     }
 
@@ -54,5 +56,10 @@ public class UnlockAbility : MonoBehaviour
     void UnlockHookshot(){
         player.SetGrappleUnlocked(true); 
         drone.SetActive(true);
+    }
+
+    IEnumerator IDestroyThisObj(){
+        yield return new WaitForSeconds(0.01f);
+        Destroy(this.gameObject);
     }
 }

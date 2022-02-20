@@ -365,6 +365,7 @@ public class Avatar : MonoBehaviour
 
         animator.SetBool("Walking", false);
 
+        audioPlayer.StopAudio();
         audioPlayer.PlayAudioClip(17, grappleVolume);
         audioPlayer.PlayAudioClip(18, grappleVolume);
     }

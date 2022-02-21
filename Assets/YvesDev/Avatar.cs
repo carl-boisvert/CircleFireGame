@@ -51,6 +51,9 @@ public class Avatar : MonoBehaviour
     [SerializeField] float hoverAcceleration = 5.5f;
     [SerializeField] float maxHoverSpeed = 1f;
     float airBoostSpeed;
+    [SerializeField] ParticleSystem hoverPS;
+    [SerializeField] ParticleSystem airBoostPS;
+    [SerializeField] GameObject[] jetpackLights;
 
     [Header("Grappling Drone")]
     public LayerMask whatsIsGrappleable;
@@ -86,7 +89,11 @@ public class Avatar : MonoBehaviour
         airBoostSpeed = jumpSpeed * airBoostSpeedMult;
 
         fuel = maxFuel;
+
         grappleEffect.gameObject.SetActive(false);
+        ActivateJetpackLights(false);
+        hoverPS.Stop();
+        airBoostPS.Stop();
     }
 
     // Update is called once per frame
@@ -197,6 +204,17 @@ public class Avatar : MonoBehaviour
             grappleEffect.transform.position = grappleTo;
             grappleEffect.gameObject.SetActive(true);
         }
+    }
+
+    private void ActivateJetpackLights(bool val)
+    {
+        foreach (GameObject light in jetpackLights) light.SetActive(val);
+    }
+
+    private void StopAirBoostEffect()
+    {
+        airBoostPS.Stop();
+        ActivateJetpackLights(false);
     }
 
     #endregion
@@ -313,6 +331,8 @@ public class Avatar : MonoBehaviour
     {
         StateMachine = "Hover";
         audioPlayer.PlayAudioClip(10, hoverVolume);
+        ActivateJetpackLights(true);
+        hoverPS.Play();
     }
 
     private void Hover()
@@ -337,6 +357,9 @@ public class Avatar : MonoBehaviour
     {
         StateMachine = "Jump";
         audioPlayer.StopAudio();
+
+        hoverPS.Stop();
+        ActivateJetpackLights(false);
     }
 
     private void StartAirBoost()
@@ -345,9 +368,14 @@ public class Avatar : MonoBehaviour
         velY = airBoostSpeed;
         fuel -= airBoostCost;
         FuelStabilizer();
-        StopAirBoost();
+
+        airBoostPS.Play();
+        Invoke("StopAirBoostEffect", 1f);
+        ActivateJetpackLights(true);
 
         audioPlayer.PlayAudioClipRandomFromRange(11, 16, airBoostVolume);
+        
+        StopAirBoost();
     }
 
     private void AirBoost()

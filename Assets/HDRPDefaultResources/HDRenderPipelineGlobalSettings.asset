@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781cc897cf8675041a751163b51f97dd, type: 3}
   m_Name: HDRenderPipelineGlobalSettings
   m_EditorClassIdentifier: 
-  m_DefaultVolumeProfile: {fileID: 11400000, guid: 01f836aa6275a5c46bdb711e586f741f, type: 2}
+  m_DefaultVolumeProfile: {fileID: 11400000, guid: faa3c811c84343744b4791d3aac2c389, type: 2}
   m_LookDevVolumeProfile: {fileID: 11400000, guid: 254c4fe87beb7be4fa72e1681edbed02, type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
@@ -46,7 +46,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderingPathDefaultRealtimeReflectionFrameSettings:
     bitDatas:
-      data1: 139716617048837
+      data1: 139716617048845
       data2: 4539628424389459992
     lodBias: 1
     lodBiasMode: 0

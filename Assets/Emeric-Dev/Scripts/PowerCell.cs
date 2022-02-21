@@ -6,6 +6,10 @@ public class PowerCell : MonoBehaviour
 {
     public static int amountHeld = 0;
 
+    void Awake()
+    {
+        amountHeld = 0;
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")){

@@ -86,6 +86,7 @@ public class Avatar : MonoBehaviour
         airBoostSpeed = jumpSpeed * airBoostSpeedMult;
 
         fuel = maxFuel;
+        grappleEffect.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

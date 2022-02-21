@@ -526,11 +526,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017156285
+      value: -0.000000017156292
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031378, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000001311996
+      value: 0.0000000013119965
       objectReference: {fileID: 0}
     - target: {fileID: 5829181183461031379, guid: d4ed1ae49d7ab4442977c47e8a9809c7, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
@@ -672,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435689, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: clearColorMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435689, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: backgroundColorHDR.b
@@ -688,7 +688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435689, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: volumeLayerMask.m_Bits
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7500249887376435692, guid: ee320303f889c7740927741bde010a6b, type: 3}
       propertyPath: m_RootOrder

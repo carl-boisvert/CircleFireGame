@@ -9,9 +9,9 @@ public class EnableObjectOnTrigger : MonoBehaviour
     [SerializeField] GameObject[] objToDisable;
     // Start is called before the first frame update
     void Start()
-    {
-        foreach(GameObject go in objToEnable) go.SetActive(false);
-        foreach(GameObject go in objToDisable) go.SetActive(true);
+    {  
+        if (objToEnable.Length > 0) { foreach(GameObject go in objToEnable) go.SetActive(false); }
+        if (objToEnable.Length > 0) { foreach(GameObject go in objToDisable) go.SetActive(true); }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,10 +24,10 @@ public class EnableObjectOnTrigger : MonoBehaviour
 
     public void EnableObjects()
     {
-        foreach (GameObject go in objToEnable) go.SetActive(true);
+        if (objToEnable.Length > 0) { foreach (GameObject go in objToEnable) go.SetActive(true); }
     }
 
     public void DisableObjects(){
-        foreach (GameObject go in objToDisable) go.SetActive(false);
+        if (objToEnable.Length > 0) { foreach (GameObject go in objToDisable) go.SetActive(false); }
     }
 }

@@ -106,7 +106,7 @@ MonoBehaviour:
     m_Value: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.0012459948, g: 0.0044190222, b: 0.03773582, a: 1}
+    m_Value: {r: 0, g: 0.0009803922, b: 0.009803922, a: 1}
   tint:
     m_OverrideState: 1
     m_Value: {r: 0, g: 1.1921569, b: 1.4980392, a: 1}
@@ -130,7 +130,7 @@ MonoBehaviour:
     m_Value: 61.52
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.2
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -191,13 +191,13 @@ MonoBehaviour:
     m_Value: 0.15
   intensity:
     m_OverrideState: 1
-    m_Value: 0.313
+    m_Value: 0.2
   scatter:
     m_OverrideState: 1
-    m_Value: 0.589
+    m_Value: 0.4
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.46367, b: 0.3726415, a: 1}
+    m_Value: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}

@@ -401,6 +401,9 @@ public class Avatar : MonoBehaviour
         audioPlayer.StopAudio();
         audioPlayer.PlayAudioClip(17, grappleVolume);
         audioPlayer.PlayAudioClip(18, grappleVolume);
+
+        hoverPS.Stop();
+        ActivateJetpackLights(false);
     }
 
     private void Grapple()
